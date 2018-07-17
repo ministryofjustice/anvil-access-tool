@@ -1,0 +1,65 @@
+.control-label{
+font-size:20px;
+}
+
+.class_mainTitle{
+  padding-left:40px;
+}
+
+
+.class_first_name{
+  padding-left:40px;
+}
+
+.class_surname{
+  padding-left:40px;
+}
+
+.class_prison{
+  padding-left:40px;
+  color:rgb(49, 126, 172);
+  font-weight: normal;
+}
+
+.class_role{
+  padding-left:40px;
+}
+
+.class_quantum_id{
+  padding-left:40px;
+}
+
+.class_app_checkbox{
+  padding-left:40px;
+}
+
+
+.class_submitButton{
+  padding-left:40px;
+}
+
+.class_first_name_err{
+  padding-left:40px;
+  color:red;
+}
+
+.class_surname_err{
+  padding-left:40px;
+  color:red;
+}
+
+.class_role_err{
+  padding-left:40px;
+  color:red;
+}
+
+.class_quantum_error{
+  padding-top:80px;
+  color:red;
+}
+
+.class_first_name_icon{
+  padding-top:60px;
+  color:red;
+}
+
