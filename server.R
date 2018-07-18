@@ -66,12 +66,13 @@ shinyServer(function(input, output, session) {
     }
   })
     
+  #Submit Button action
   observeEvent(input$submitButton,{
     if (nchar(input$first_name)==0){
       output$first_name_err<-renderText({"First Name must not be blank"})
-      output$first_name_icon<-renderUI({icon("times","fa-3x")})
+      output$first_name_icon<-renderUI({icon("times")})
     }else{
-      output$first_name_icon<-renderUI({icon("check","fa-3x")})
+      output$first_name_icon<-renderUI({icon("check")})
     }
     
     
@@ -85,12 +86,19 @@ shinyServer(function(input, output, session) {
     
     if (nchar(input$role)==0){
       output$role<-renderText({"Role must not be blank"})
-      output$role<-renderUI({icon("times")})
+      output$role_icon<-renderUI({icon("times")})
     }else{
-      output$role<-renderUI({icon("check")})
+      output$role_error<-renderUI({icon("check")})
     }
     
-    output$quantum_error<-renderText({"Quantum ID must be of the format: 3 Letters, 2 Numbers, 3 Letters. The second letter should be 'Q'."})
+    if (nchar(input$prison)==0){
+      output$prison<-renderText({"Prison must not be blank"})
+      output$prison<-renderUI({icon("times")})
+    }else{
+      output$prison<-renderUI({icon("check")})
+    }
+    
+    output$quantum_error<-renderText({"Quantum ID must be of the format: AAA99A with a Q as the second character."})
     output$quantum_icon<-renderUI({icon("times")})
     
     #Create Quantum message
@@ -142,7 +150,7 @@ shinyServer(function(input, output, session) {
 
     
     if (foundErrors==1){
-      showNotification(msg,type="error")
+      showNotification(id="error_notif",msg,type="error",duration=NULL)
       output$quantum_error<-renderText({
         "Quantum ID must be of the format: 3 Letters, 2 Numbers, 3 Letters. The second letter should be 'Q'."})
       output$quantum_icon<-renderUI({icon("times")})
@@ -153,7 +161,7 @@ shinyServer(function(input, output, session) {
       
     }else{
     saveData(formData())  
-    showNotification("Thank you. Your responses have been submitted successfully.",type="message")
+    showNotification(id="success_notif","Thank you. Your responses have been submitted successfully.",type="message",duration=NULL)
     shinyjs::reset("form")
     foundErrors<-0
     

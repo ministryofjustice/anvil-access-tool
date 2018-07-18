@@ -2,31 +2,73 @@
 font-size:20px;
 }
 
+
+
+
+
 .class_mainTitle{
-  padding-left:40px;
+  margin-top:40px;
+  border-width:2px;
+  border-style:solid;
+  border-color:SteelBlue;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+  font-size:30px;
+  font-weight:bold;
+  font:verdana;
+  background-color:SteelBlue;
+  color:white;
+  text-align:center;
+ 
+}
+
+.class_intro{
+  margin-top:10px;
+  font-size:15px;
+  font-weight: normal;
+  font:verdana;
+  text-align:center;
+  color:white;
+  
+}
+
+.class_selections{
+  background-color:LightSteelBlue;
+  border-width:2px;
+  border-style:solid;
+  border-color:LightSteelBlue;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px;
+  padding-bottom:60px;
+ 
 }
 
 
 .class_first_name{
   padding-left:40px;
+  font-weight: normal;
 }
 
 .class_surname{
   padding-left:40px;
+  font-weight: normal;
 }
 
 .class_prison{
   padding-left:40px;
-  color:rgb(49, 126, 172);
+  font-family:"arial";
+  color:black;
   font-weight: normal;
 }
 
 .class_role{
   padding-left:40px;
+  font-weight: normal;
 }
 
 .class_quantum_id{
   padding-left:40px;
+  font-weight: normal;
 }
 
 .class_app_checkbox{
@@ -35,6 +77,7 @@ font-size:20px;
 
 
 .class_submitButton{
+  color:SteelBlue;
   padding-left:40px;
 }
 
@@ -58,8 +101,43 @@ font-size:20px;
   color:red;
 }
 
-.class_first_name_icon{
+
+.class_surname_icon{
   padding-top:60px;
   color:red;
 }
 
+.class_prison_icon{
+  padding-top:60px;
+  color:red;
+}
+
+.class_role_icon{
+  padding-top:60px;
+  color:red;
+}
+
+.class_quantum_icon{
+  padding-top:60px;
+  color:red;
+}
+
+.fa-check{
+  padding-top:70px;
+  font-size:20px;
+  color:green;
+}
+
+.fa-times{
+  padding-top:70px;
+  font-size:20px;
+  color:red;
+}
+
+.class_access_msg{
+  padding-top:70px;
+}
+
+.class_prison_access{
+  padding-top:70px;
+}
