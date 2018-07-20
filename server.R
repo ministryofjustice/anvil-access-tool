@@ -5,12 +5,10 @@ library(shinyWidgets)
 library(shinyjs)
 library(data.table)
 
-fields<-c("first_name","surname","prison","role","quantum_id","apps_needed")
+fields<-c("first_name","surname","prison","role","quantum_id","bentham","safety","categorisation")
 foundErrors<-0
 
 saveData<-function(data){
-  #filePath<-"/home/hbutchermoj/anvil-access-app/anvil-access-tool"
-  #fileName<-"test.csv"
   
   #write.csv(x=data,file=file.path(filePath,fileName),row.names = FALSE,quote=TRUE)
   
@@ -32,8 +30,6 @@ saveData<-function(data){
 }
 
 
-
-
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
 
@@ -42,30 +38,16 @@ shinyServer(function(input, output, session) {
     data<-sapply(fields,function(x) input[[x]])
   })
   
-  
-  #Want this to occur only once selected
-  observeEvent(input$prison,{
-    if (!exists("responses")){
-      output$prison_access<-renderUI({"Nobody in your prison currently has access"})
-      
-    }else if (nrow(responses[responses$prison==input$prison,])==0){
-      #output$prison_access<-renderText({"Nobody in your prison currently has access"})
-      output$prison_access<-renderUI({"Nobody in your prison currently has access"})
-      
-    }else{
-      #output$prison_access<-renderUI({"People do have access"})
-      output$prison_access<-renderUI({
-        output$responses<-renderDataTable(
-          responses[responses$prison==input$prison,c('first_name','surname','role','quantum_id')])
-          dataTableOutput("responses")
-        })
-    #  output$prison_access<-renderDataTable({
-     #   responses[responses$prison==input$prison,c('first_name','surname','role','quantum_id')]
-      #})
-      
-    }
-  })
-    
+  responses_subset<-reactive({responses[responses$prison==input$prison,c('first_name','surname','role','quantum_id','bentham','safety','categorisation')]})
+
+
+  output$prison_access<-renderDataTable({
+    req(nrow(responses_subset())>0)
+    responses_subset()
+    #options=list("searching":false)
+    })
+
+
   #Submit Button action
   observeEvent(input$submitButton,{
     if (nchar(input$first_name)==0){
@@ -155,17 +137,13 @@ shinyServer(function(input, output, session) {
         "Quantum ID must be of the format: 3 Letters, 2 Numbers, 3 Letters. The second letter should be 'Q'."})
       output$quantum_icon<-renderUI({icon("times")})
       
-     # output$first_name_error<-renderText({
-   #     first_name_err_msg
-    #  })
       
     }else{
     saveData(formData())  
     showNotification(id="success_notif","Thank you. Your responses have been submitted successfully.",type="message",duration=NULL)
     shinyjs::reset("form")
     foundErrors<-0
-    
-      #  showNotification("Error: Your Quantum ID must be 3 letter, 2 digits, 1 letter.",type="error")
+
     }
   })
 
