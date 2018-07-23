@@ -47,6 +47,7 @@
   font-weight: normal;
 }
 
+
 .class_surname{
   padding-left:40px;
   font-weight: normal;
@@ -54,11 +55,16 @@
 
 .class_prison{
   padding-left:40px;
-  font-family:"helvetica-neue";
-  color:black;
-  font-weight: 500;
+  font-weight: normal;
+  font:arial;
   font-size:24px;
-  line-height:1.1;
+}
+
+.prison{
+  padding-left:40px;
+  font-weight: normal;
+  font:arial;
+  font-size:24px;
 }
 
 .class_role{
@@ -77,7 +83,7 @@
 
 
 .class_submitButton{
-  background-color:SteelBlue;
+  color:SteelBlue;
   padding-left:40px;
 }
 
@@ -97,7 +103,7 @@
 }
 
 .class_quantum_error{
-  padding-top:80px;
+  padding-left:40px;
   color:red;
 }
 
@@ -124,20 +130,26 @@
 
 .fa-check{
   padding-top:70px;
+  padding-left:0;
   font-size:20px;
   color:green;
 }
 
 .fa-times{
   padding-top:70px;
+  padding-left:0;
+  margin-left:0;
   font-size:20px;
   color:red;
 }
 
 .class_access_msg{
   padding-top:70px;
+  margin-left:0;
 }
 
 .class_prison_access{
   padding-top:70px;
+  padding-right:60px;
 }
+

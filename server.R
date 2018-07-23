@@ -4,15 +4,18 @@ library(shinydashboard)
 library(shinyWidgets)
 library(shinyjs)
 library(data.table)
+library(DT)
 
 fields<-c("first_name","surname","prison","role","quantum_id","bentham","safety","categorisation")
 foundErrors<-0
+quantumErr<-0
 
 saveData<-function(data){
   
   #write.csv(x=data,file=file.path(filePath,fileName),row.names = FALSE,quote=TRUE)
   
   data<-as.data.frame(t(data),stringsAsFactors=FALSE)
+  
   if(exists("responses")){
     bentham_check<-as.integer("Bentham"%in%unlist(responses[nrow(responses),6]))
     safety_check<-as.integer("Safety Diagnostic Tool"%in%unlist(responses[nrow(responses),6]))
@@ -43,17 +46,24 @@ shinyServer(function(input, output, session) {
 
   output$prison_access<-renderDataTable({
     req(nrow(responses_subset())>0)
-    responses_subset()
-    #options=list("searching":false)
-    })
+    datatable(responses_subset(),options=list("searching"=FALSE),rownames=FALSE,colnames=c("First Name","Surname","Role","Quantum ID", "Bentham", "Safety Tool", "Categorisation Tool"))
+  })
+  
+  output$prison_access_null<-renderText({
+    req(nrow(responses_subset())==0)
+    "No users at your prison have access."
+  })
 
 
   #Submit Button action
   observeEvent(input$submitButton,{
+    
     if (nchar(input$first_name)==0){
       output$first_name_err<-renderText({"First Name must not be blank"})
       output$first_name_icon<-renderUI({icon("times")})
+      foundErrors<-1
     }else{
+      output$first_name_err<-renderText({""})
       output$first_name_icon<-renderUI({icon("check")})
     }
     
@@ -61,92 +71,121 @@ shinyServer(function(input, output, session) {
     if (nchar(input$surname)==0){
       output$surname_err<-renderText({"Surname must not be blank"})
       output$surname_icon<-renderUI({icon("times")})
+      foundErrors<-1
     }else{
+      output$surname_err<-renderText({""})
       output$surname_icon<-renderUI({icon("check")})
     }
     
     
     if (nchar(input$role)==0){
-      output$role<-renderText({"Role must not be blank"})
+      output$role_err<-renderText({"Role must not be blank"})
       output$role_icon<-renderUI({icon("times")})
+      foundErrors<-1
     }else{
-      output$role_error<-renderUI({icon("check")})
+      output$role_err<-renderText({""})
+      output$role_icon<-renderUI({icon("check")})
     }
     
     if (nchar(input$prison)==0){
-      output$prison<-renderText({"Prison must not be blank"})
-      output$prison<-renderUI({icon("times")})
+      output$prison_err<-renderText({"Prison must not be blank"})
+      output$prison_icon<-renderUI({icon("times")})
+      foundErrors<-1
     }else{
-      output$prison<-renderUI({icon("check")})
+      output$prison_err<-renderText({""})
+      output$prison_icon<-renderUI({icon("check")})
     }
     
-    output$quantum_error<-renderText({"Quantum ID must be of the format: AAA99A with a Q as the second character."})
-    output$quantum_icon<-renderUI({icon("times")})
+    if(input$appsneeded==FALSE){
+      output$apps_err<-renderText({"Please select at least one app"})
+      output$apps_icon<-renderUI({icon("times")})
+      foundErrors<-1
+    }else{
+      output$apps_err<-renderText({""})
+      output$apps_icon<-renderUI({icon("check")})
+    }
     
-    #Create Quantum message
-    msg<-""
     
     #Check ID is 6 characters long
     if (nchar(input$quantum_id)!=6){
       foundErrors<-1
-      msg<-paste(msg,"Quantum ID must be 6 characters long.")
+      quantumErr<-1
+    }else{
+      quantumErr<-0
     }
     
     
     #Check second letter of ID is "Q"
-   if (substring(input$quantum_id,2,2)!="Q" && substring(input$quantum_id,2,2)!="q"){
+    if (substring(input$quantum_id,2,2)!="Q" && substring(input$quantum_id,2,2)!="q"){
       foundErrors<-1
-      msg<-paste(msg,"Quantum ID must have 'Q' as it's second character.")
+      quantumErr<-1
+    }else{
+      quantumErr<-0
     }
       
     
     #Check 1st character is character
     if (!is.na(as.numeric(substring(input$quantum_id,1,1)))){
       foundErrors<-1
-      msg<-paste(msg, "first character of Quantum ID must be a letter")
+      quantumErr<-1
+    }else{
+      quantumErr<-0
     }
   
     #Check 2nd character is character
     if (!is.na(as.numeric(substring(input$quantum_id,2,1)))){
       foundErrors<-1
-      msg<-paste(msg, "Second character of Quantum ID must be a letter")
+      quantumErr<-1
+    }else{
+      quantumErr<-0
     }
 
     #Check 3rd character is character
     if (!is.na(as.numeric(substring(input$quantum_id,3,1)))){
       foundErrors<-1
-      msg<-paste(msg, "Third character of Quantum ID must be a letter")
+      quantumErr<-1
+    }else{
+      quantumErr<-0
     }
 
     #Check 6th character is character
     if (!is.na(as.numeric(substring(input$quantum_id,6,1)))){
       foundErrors<-1
-      msg<-paste(msg, "Sixth character of Quantum ID must be a letter")
+      quantumErr<-1
+    }else{
+      quantumErr<-0
     }
 
     #Check 4th and 5th characters are numbers
     if (is.na(as.numeric(substring(input$quantum_id,4,5)))){
       foundErrors<-1
-      msg<-paste(msg, "Fourth & Fifth characters of Quantum ID must be numbers")
+      quantumErr<-1
+    }else{
+      quantumErr<-0
     }
 
     
-    if (foundErrors==1){
-      showNotification(id="error_notif",msg,type="error",duration=NULL)
-      output$quantum_error<-renderText({
-        "Quantum ID must be of the format: 3 Letters, 2 Numbers, 3 Letters. The second letter should be 'Q'."})
+    #Print Quantum ID validation messages
+    if (quantumErr==1){
+      output$quantum_error<-renderText({"Quantum ID must be of the format: AAA99A with a Q as the second character."})
       output$quantum_icon<-renderUI({icon("times")})
-      
+    }else{
+      output$quantum_error<-renderText({""})
+      output$quantum_icon<-renderUI({icon("check")})
+    }
+    
+    
+    if (foundErrors==1){
+      #Show error message
+      showNotification(id="error_notif","Please correct the errors listed above.",type="error",duration=NULL)
       
     }else{
-    saveData(formData())  
-    showNotification(id="success_notif","Thank you. Your responses have been submitted successfully.",type="message",duration=NULL)
-    shinyjs::reset("form")
-    foundErrors<-0
-
+      #Save data to responses datatable & show success message
+      saveData(formData())  
+      showNotification(id="success_notif","Thank you. Your responses have been submitted successfully.",type="message",duration=NULL)
+      shinyjs::reset("form")
+      foundErrors<-0
+      quantumErr<-0
     }
   })
-
-  
-
 })
