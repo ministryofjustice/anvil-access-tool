@@ -10,6 +10,9 @@ fields<-c("first_name","surname","prison","role","quantum_id","bentham","safety"
 foundErrors<-0
 quantumErr<-0
 
+responses<<-as.data.table(s3tools::s3_path_to_full_df("alpha-anvil-access-tool/anvil-app-responses.csv",header=TRUE))
+names(responses)<<-fields
+
 saveData<-function(data){
   
   #write.csv(x=data,file=file.path(filePath,fileName),row.names = FALSE,quote=TRUE)
@@ -41,6 +44,7 @@ shinyServer(function(input, output, session) {
     data<-sapply(fields,function(x) input[[x]])
   })
   
+  
   responses_subset<-reactive({responses[responses$prison==input$prison,c('first_name','surname','role','quantum_id','bentham','safety','categorisation')]})
 
 
@@ -50,7 +54,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$prison_access_null<-renderText({
-    req(nrow(responses_subset())==0)
+    req(!nrow(responses_subset())>0)
     "No users at your prison have access."
   })
 
@@ -96,7 +100,8 @@ shinyServer(function(input, output, session) {
       output$prison_icon<-renderUI({icon("check")})
     }
     
-    if(input$appsneeded==FALSE){
+
+    if(is.null(input$apps_needed)){
       output$apps_err<-renderText({"Please select at least one app"})
       output$apps_icon<-renderUI({icon("times")})
       foundErrors<-1
