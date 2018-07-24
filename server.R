@@ -14,11 +14,11 @@ responses<<-as.data.table(s3tools::s3_path_to_full_df("alpha-anvil-access-tool/a
 names(responses)<<-fields
 
 saveData<-function(data){
-  
+
   #write.csv(x=data,file=file.path(filePath,fileName),row.names = FALSE,quote=TRUE)
-  
+
   data<-as.data.frame(t(data),stringsAsFactors=FALSE)
-  
+
   if(exists("responses")){
     bentham_check<-as.integer("Bentham"%in%unlist(responses[nrow(responses),6]))
     safety_check<-as.integer("Safety Diagnostic Tool"%in%unlist(responses[nrow(responses),6]))
@@ -39,12 +39,12 @@ saveData<-function(data){
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
 
-  
+
   formData<-reactive({
     data<-sapply(fields,function(x) input[[x]])
   })
-  
-  
+
+
   responses_subset<-reactive({responses[responses$prison==input$prison,c('first_name','surname','role','quantum_id','bentham','safety','categorisation')]})
 
 
@@ -52,7 +52,7 @@ shinyServer(function(input, output, session) {
     req(nrow(responses_subset())>0)
     datatable(responses_subset(),options=list("searching"=FALSE),rownames=FALSE,colnames=c("First Name","Surname","Role","Quantum ID", "Bentham", "Safety Tool", "Categorisation Tool"))
   })
-  
+
   output$prison_access_null<-renderText({
     req(!nrow(responses_subset())>0)
     "No users at your prison have access."
@@ -61,7 +61,7 @@ shinyServer(function(input, output, session) {
 
   #Submit Button action
   observeEvent(input$submitButton,{
-    
+
     if (nchar(input$first_name)==0){
       output$first_name_err<-renderText({"First Name must not be blank"})
       output$first_name_icon<-renderUI({icon("times")})
@@ -70,8 +70,8 @@ shinyServer(function(input, output, session) {
       output$first_name_err<-renderText({""})
       output$first_name_icon<-renderUI({icon("check")})
     }
-    
-    
+
+
     if (nchar(input$surname)==0){
       output$surname_err<-renderText({"Surname must not be blank"})
       output$surname_icon<-renderUI({icon("times")})
@@ -80,8 +80,8 @@ shinyServer(function(input, output, session) {
       output$surname_err<-renderText({""})
       output$surname_icon<-renderUI({icon("check")})
     }
-    
-    
+
+
     if (nchar(input$role)==0){
       output$role_err<-renderText({"Role must not be blank"})
       output$role_icon<-renderUI({icon("times")})
@@ -90,7 +90,7 @@ shinyServer(function(input, output, session) {
       output$role_err<-renderText({""})
       output$role_icon<-renderUI({icon("check")})
     }
-    
+
     if (nchar(input$prison)==0){
       output$prison_err<-renderText({"Prison must not be blank"})
       output$prison_icon<-renderUI({icon("times")})
@@ -99,7 +99,7 @@ shinyServer(function(input, output, session) {
       output$prison_err<-renderText({""})
       output$prison_icon<-renderUI({icon("check")})
     }
-    
+
 
     if(is.null(input$apps_needed)){
       output$apps_err<-renderText({"Please select at least one app"})
@@ -109,8 +109,8 @@ shinyServer(function(input, output, session) {
       output$apps_err<-renderText({""})
       output$apps_icon<-renderUI({icon("check")})
     }
-    
-    
+
+
     #Check ID is 6 characters long
     if (nchar(input$quantum_id)!=6){
       foundErrors<-1
@@ -118,8 +118,8 @@ shinyServer(function(input, output, session) {
     }else{
       quantumErr<-0
     }
-    
-    
+
+
     #Check second letter of ID is "Q"
     if (substring(input$quantum_id,2,2)!="Q" && substring(input$quantum_id,2,2)!="q"){
       foundErrors<-1
@@ -127,8 +127,8 @@ shinyServer(function(input, output, session) {
     }else{
       quantumErr<-0
     }
-      
-    
+
+
     #Check 1st character is character
     if (!is.na(as.numeric(substring(input$quantum_id,1,1)))){
       foundErrors<-1
@@ -136,7 +136,7 @@ shinyServer(function(input, output, session) {
     }else{
       quantumErr<-0
     }
-  
+
     #Check 2nd character is character
     if (!is.na(as.numeric(substring(input$quantum_id,2,1)))){
       foundErrors<-1
@@ -169,7 +169,7 @@ shinyServer(function(input, output, session) {
       quantumErr<-0
     }
 
-    
+
     #Print Quantum ID validation messages
     if (quantumErr==1){
       output$quantum_error<-renderText({"Quantum ID must be of the format: AAA99A with a Q as the second character."})
@@ -178,15 +178,15 @@ shinyServer(function(input, output, session) {
       output$quantum_error<-renderText({""})
       output$quantum_icon<-renderUI({icon("check")})
     }
-    
-    
+
+
     if (foundErrors==1){
       #Show error message
       showNotification(id="error_notif","Please correct the errors listed above.",type="error",duration=5)
-      
+
     }else{
       #Save data to responses datatable & show success message
-      saveData(formData())  
+      saveData(formData())
       showNotification(id="success_notif","Thank you. Your responses have been submitted successfully.",type="message",duration=5)
       shinyjs::reset("form")
       foundErrors<-0
