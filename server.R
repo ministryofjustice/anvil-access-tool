@@ -182,12 +182,12 @@ shinyServer(function(input, output, session) {
     
     if (foundErrors==1){
       #Show error message
-      showNotification(id="error_notif","Please correct the errors listed above.",type="error",duration=NULL)
+      showNotification(id="error_notif","Please correct the errors listed above.",type="error",duration=5)
       
     }else{
       #Save data to responses datatable & show success message
       saveData(formData())  
-      showNotification(id="success_notif","Thank you. Your responses have been submitted successfully.",type="message",duration=NULL)
+      showNotification(id="success_notif","Thank you. Your responses have been submitted successfully.",type="message",duration=5)
       shinyjs::reset("form")
       foundErrors<-0
       quantumErr<-0
