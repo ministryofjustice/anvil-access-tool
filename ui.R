@@ -13,7 +13,7 @@ dt.prisons<-as.data.table(s3tools::s3_path_to_full_df("alpha-anvil-access-tool/p
 shinyUI(fluidPage(
 
   useShinyjs(),
-  includeCSS("www/custom.css"),
+  shiny::includeCSS("www/custom.css"),
 
 
   div(style="background-color:WhiteSmoke;",
@@ -76,7 +76,7 @@ shinyUI(fluidPage(
           fluidRow(
             column(width=10,
               div("Select Prison:", class="class_prison",
-                pickerInput(
+                shinyWidgets::pickerInput(
                   inputId = "prison",
                   label = NULL,
                   width="100%",
@@ -131,7 +131,7 @@ shinyUI(fluidPage(
           fluidRow(
             column(width=10,
               div(class="class_app_checkbox",
-                awesomeCheckboxGroup(
+                shinyWidgets::awesomeCheckboxGroup(
                   inputId = "apps_needed",
                   label = "Please select which apps you require access to",
                   choices = c("Safety Diagnostic Tool", "Bentham", "Prisoner Categorisation"),

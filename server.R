@@ -50,7 +50,7 @@ shinyServer(function(input, output, session) {
 
   output$prison_access<-renderDataTable({
     req(nrow(responses_subset())>0)
-    datatable(responses_subset(),options=list("searching"=FALSE),rownames=FALSE,colnames=c("First Name","Surname","Role","Quantum ID", "Bentham", "Safety Tool", "Categorisation Tool"))
+    DT::datatable(responses_subset(),options=list("searching"=FALSE),rownames=FALSE,colnames=c("First Name","Surname","Role","Quantum ID", "Bentham", "Safety Tool", "Categorisation Tool"))
   })
 
   output$prison_access_null<-renderText({
