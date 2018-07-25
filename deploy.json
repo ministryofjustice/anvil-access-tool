@@ -1,9 +1,7 @@
 {
-  "mojanalytics-deploy": "v0.1.4",
-  "disable_authentication": true,
+  "mojanalytics-deploy": "v0.2.3",
+  "disable_authentication": false,
   "allowed_ip_ranges": [
-    "DOM1",
-    "102PF Wifi",
-    "Quantum"
+    "DOM1"
   ]
 }
