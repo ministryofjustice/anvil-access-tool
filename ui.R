@@ -5,8 +5,7 @@ library(shinythemes)
 library(data.table)
 library(shinyjs)
 
-# Load prison dropdown from s3
-dt.prisons<-as.data.table(s3tools::s3_path_to_full_df("alpha-app-anvil-access-tool/prisons_and_offices_v2.csv",header=FALSE))
+
 
 
 # Define UI for application
@@ -72,17 +71,17 @@ shinyUI(shiny::fluidPage(
           shiny::div(class="class_surname_err",
             shiny::textOutput("surname_err")),
 
-          #Section: prison
-          shiny::fluidRow(
-            shiny::column(width=10,
-              shiny::div("Prison:", class="class_prison",
-                shinyWidgets::pickerInput(
-                  inputId = "prison",
-                  label = NULL,
-                  width="100%",
-                  selected="",
-                  choices=c("--Please Select Prison--",dt.prisons)))
-            ),
+          # #Section: prison
+           shiny::fluidRow(
+             shiny::column(width=10,
+               shiny::div("Prison:", class="class_prison",
+                 shinyWidgets::pickerInput(
+                   inputId = "prison",
+                   label = NULL,
+                   width="100%",
+                   selected="",
+                   choices=c("--Please Select Prison--",dt.prisons)))
+             ),
 
             shiny::column(width=1,
               shiny::div(
