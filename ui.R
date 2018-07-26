@@ -75,13 +75,13 @@ shinyUI(shiny::fluidPage(
           #Section: prison
           shiny::fluidRow(
             shiny::column(width=10,
-              shiny::div("Select Prison:", class="class_prison",
+              shiny::div("Prison:", class="class_prison",
                 shinyWidgets::pickerInput(
                   inputId = "prison",
                   label = NULL,
                   width="100%",
                   selected="",
-                  choices=as.list(dt.prisons)))
+                  choices=c("--Please Select Prison--",dt.prisons)))
             ),
 
             shiny::column(width=1,
