@@ -6,7 +6,7 @@ library(data.table)
 library(shinyjs)
 
 # Load prison dropdown from s3
-dt.prisons<-as.data.table(s3tools::s3_path_to_full_df("alpha-anvil-access-tool/prisons_and_offices_v2.csv",header=FALSE))
+dt.prisons<-as.data.table(s3tools::s3_path_to_full_df("alpha-app-anvil-access-tool/prisons_and_offices_v2.csv",header=FALSE))
 
 
 # Define UI for application
@@ -159,7 +159,7 @@ shinyUI(shiny::fluidPage(
             shiny::textOutput("prison_access_null")),
 
         shiny::div(class="class_prison_access",
-          shiny::dataTableOutput("prison_access"))
+          DT::dataTableOutput("prison_access"))
 
 
       )
