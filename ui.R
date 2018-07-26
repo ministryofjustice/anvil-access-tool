@@ -80,7 +80,8 @@ shinyUI(shiny::fluidPage(
                   inputId = "prison",
                   label = NULL,
                   width="100%",
-                  choices<- dt.prisons[,1]))
+                  selected="",
+                  choices=as.list(dt.prisons)))
             ),
 
             shiny::column(width=1,
