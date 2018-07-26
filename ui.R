@@ -10,72 +10,72 @@ dt.prisons<-as.data.table(s3tools::s3_path_to_full_df("alpha-anvil-access-tool/p
 
 
 # Define UI for application
-shinyUI(fluidPage(
+shinyUI(shiny::fluidPage(
 
   useShinyjs(),
   shiny::includeCSS("www/custom.css"),
 
 
-  div(style="background-color:WhiteSmoke;",
+  shiny::div(style="background-color:WhiteSmoke;",
   id="form",
 
     #Main page
-    fluidRow(
+    shiny::fluidRow(
 
-      column(width=4, offset=1, #class="class_selections",
+      shiny::column(width=4, offset=1, #class="class_selections",
 
-        fluidRow(#class="class_top_banner",
-          div(class="class_mainTitle",
+      shiny::fluidRow(#class="class_top_banner",
+          shiny::div(class="class_mainTitle",
               "Anvil access request form")
         ),
 
-        div(class="class_selections",
-          fluidRow(
-            div(class="class_intro",
+        shiny::div(class="class_selections",
+          shiny::fluidRow(
+            shiny::div(class="class_intro",
               "To gain access to the HMPPS Anvil apps, please enter your details in the fields below and click submit.")
           ),
 
 
           #Section First Name
-          fluidRow(
-            column(width=10,
-              div(class="class_first_name",
-                textInput("first_name",
+          shiny::fluidRow(
+            shiny::column(width=10,
+              shiny::div(class="class_first_name",
+                shiny::textInput("first_name",
                   label=h3("First Name:"),
                   width="100%"))
             ),
 
-            column(width=1,
-              div(
-                uiOutput("first_name_icon"))
+            shiny::column(width=1,
+              shiny::div(
+                shiny::uiOutput("first_name_icon"))
             )
           ),
 
-          div(class="class_first_name_err",
-            textOutput("first_name_err")),
+          shiny::div(class="class_first_name_err",
+            shiny::textOutput("first_name_err")),
 
           #Section: Surname
-          fluidRow(#style="background-color:blue;",
-            column(width=10,
-              div(class="class_surname",
-                textInput("surname",
+          shiny::fluidRow(#style="background-color:blue;",
+            shiny::column(width=10,
+              shiny::div(class="class_surname",
+                shiny::textInput("surname",
                   label=h3("Surname:"),
                   width="100%"))
             ),
 
-            column(width=1,
-              div(
-                uiOutput("surname_icon"))
+            shiny::column(width=1,
+              shiny::div(
+                shiny::uiOutput("surname_icon"))
             )
           ),
 
-          div(class="class_surname_err",
-            textOutput("surname_err")),
+          shiny::div(class="class_surname_err",
+            shiny::textOutput("surname_err")),
 
           #Section: prison
-          fluidRow(
-            column(width=10,
-              div("Select Prison:", class="class_prison",
+          shiny::fluidRow(
+            shiny::column(width=10,
+              shiny::div("Select Prison:", class="class_prison",
                 shinyWidgets::pickerInput(
                   inputId = "prison",
                   label = NULL,
@@ -83,54 +83,54 @@ shinyUI(fluidPage(
                   choices<- dt.prisons[,1]))
             ),
 
-            column(width=1,
-              div(
-                uiOutput("prison_icon"))
+            shiny::column(width=1,
+              shiny::div(
+                shiny::uiOutput("prison_icon"))
             )
           ),
 
-          div(class="class_prison_err",
-            textOutput("prison_err")),
+          shiny::div(class="class_prison_err",
+            shiny::textOutput("prison_err")),
 
           #Section: role
-          fluidRow(
-            column(width = 10,
-              div(class="class_role",
-                textInput("role",
+          shiny::fluidRow(
+            shiny::column(width = 10,
+              shiny::div(class="class_role",
+                shiny::textInput("role",
                   label=h3("Role:"),
                   width="100%"))
             ),
 
-            column(width=1,
-              div(
-                uiOutput("role_icon"))
+            shiny::column(width=1,
+              shiny::div(
+                shiny::uiOutput("role_icon"))
             )
           ),
 
-          div(class="class_role_err",
-            textOutput("role_err")),
+          shiny::div(class="class_role_err",
+            shiny::textOutput("role_err")),
 
 
           #Section: quantum id
-          fluidRow(
-            column(width =10,
-              div(class="class_quantum_id",
-                textInput(
+          shiny::fluidRow(
+            shiny::column(width =10,
+              shiny::div(class="class_quantum_id",
+                shiny::textInput(
                   "quantum_id",
                   label=h3("Quantum ID:"),
                   width="100%"))
             ),
-            column(width=1,
-              uiOutput("quantum_icon"))
+            shiny::column(width=1,
+              shiny::uiOutput("quantum_icon"))
           ),
 
-          div(class="class_quantum_error",
-            textOutput("quantum_error")),
+          shiny::div(class="class_quantum_error",
+            shiny::textOutput("quantum_error")),
 
           #Section: checkbox
           fluidRow(
-            column(width=10,
-              div(class="class_app_checkbox",
+            shiny::column(width=10,
+              shiny::div(class="class_app_checkbox",
                 shinyWidgets::awesomeCheckboxGroup(
                   inputId = "apps_needed",
                   label = "Please select which apps you require access to",
@@ -139,27 +139,27 @@ shinyUI(fluidPage(
                   status = "danger"))
             ),
 
-            column(width=1,
-              uiOutput("apps_icon"))
+            shiny::column(width=1,
+              shiny::uiOutput("apps_icon"))
           ),
 
-          div(class="class_apps_error",
-            textOutput("apps_err")),
+          shiny::div(class="class_apps_error",
+            shiny::textOutput("apps_err")),
 
-          div(class="class_submitButton",
-            actionButton ("submitButton", "Submit"))
+          shiny::div(class="class_submitButton",
+            shiny::actionButton ("submitButton", "Submit"))
         )
       ),
 
-      column(width=7,
-        div(class = "class_access_msg",
+      shiny::column(width=7,
+        shiny::div(class = "class_access_msg",
           "The following users at your establishment already have access:"),
 
-        div(class="class_prison_null",
-            textOutput("prison_access_null")),
+        shiny::div(class="class_prison_null",
+            shiny::textOutput("prison_access_null")),
 
-        div(class="class_prison_access",
-          dataTableOutput("prison_access"))
+        shiny::div(class="class_prison_access",
+          shiny::dataTableOutput("prison_access"))
 
 
       )
