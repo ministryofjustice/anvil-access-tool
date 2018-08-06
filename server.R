@@ -90,8 +90,6 @@ shinyServer(function(input, output, session) {
     if (nchar(input$quantum_id)!=6){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
 
@@ -99,8 +97,6 @@ shinyServer(function(input, output, session) {
     if (substring(input$quantum_id,2,2)!="Q" && substring(input$quantum_id,2,2)!="q"){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
 
@@ -108,40 +104,30 @@ shinyServer(function(input, output, session) {
     if (!is.na(as.numeric(substring(input$quantum_id,1,1)))){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
     #Check 2nd character is character
     if (!is.na(as.numeric(substring(input$quantum_id,2,1)))){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
     #Check 3rd character is character
     if (!is.na(as.numeric(substring(input$quantum_id,3,1)))){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
     #Check 6th character is character
     if (!is.na(as.numeric(substring(input$quantum_id,6,1)))){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
     #Check 4th and 5th characters are numbers
     if (is.na(as.numeric(substring(input$quantum_id,4,5)))){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
 
