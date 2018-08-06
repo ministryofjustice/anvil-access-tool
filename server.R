@@ -39,7 +39,7 @@ shinyServer(function(input, output, session) {
   observeEvent(input$submitButton,{
 
     if (nchar(input$first_name)==0){
-      output$first_name_err<-shiny::renderText({"First Name must not be blank"})
+      output$first_name_err<-shiny::renderText({"First Name must not be blank."})
       output$first_name_icon<-shiny::renderUI({icon("times")})
       foundErrors<-1
     }else{
@@ -49,7 +49,7 @@ shinyServer(function(input, output, session) {
 
 
     if (nchar(input$surname)==0){
-      output$surname_err<-shiny::renderText({"Surname must not be blank"})
+      output$surname_err<-shiny::renderText({"Surname must not be blank."})
       output$surname_icon<-shiny::renderUI({icon("times")})
       foundErrors<-1
     }else{
@@ -59,7 +59,7 @@ shinyServer(function(input, output, session) {
 
 
     if (nchar(input$role)==0){
-      output$role_err<-shiny::renderText({"Role must not be blank"})
+      output$role_err<-shiny::renderText({"Role must not be blank."})
       output$role_icon<-shiny::renderUI({icon("times")})
       foundErrors<-1
     }else{
@@ -67,8 +67,8 @@ shinyServer(function(input, output, session) {
       output$role_icon<-shiny::renderUI({icon("check")})
     }
 
-    if (nchar(input$prison)==0){
-      output$prison_err<-shiny::renderText({"Prison must not be blank"})
+    if ((input$prison)=="--Please Select Prison--"){
+      output$prison_err<-shiny::renderText({"Please select a prison."})
       output$prison_icon<-shiny::renderUI({icon("times")})
       foundErrors<-1
     }else{
@@ -78,7 +78,7 @@ shinyServer(function(input, output, session) {
 
 
     if(is.null(input$apps_needed)){
-      output$apps_err<-shiny::renderText({"Please select at least one app"})
+      output$apps_err<-shiny::renderText({"Please select at least one app."})
       output$apps_icon<-shiny::renderUI({icon("times")})
       foundErrors<-1
     }else{
