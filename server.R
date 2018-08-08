@@ -25,8 +25,14 @@ shinyServer(function(input, output, session) {
 
   output$prison_access<-DT::renderDataTable({
     shiny::req(nrow(responses_subset())>0)
-    DT::datatable(responses_subset(),options=list("searching"=FALSE),rownames=FALSE,
-                  colnames=c("First Name","Surname","Role","Quantum ID", "Bentham", "Safety Tool", "Categorisation Tool"))
+    DT::datatable(responses_subset(),options = list("searching" = FALSE,
+                                                    paging = FALSE,
+                                                    scrollCollapse = T,
+                                                    dom = "t",
+                                                    scrollY = "500px"),
+                                    rownames=FALSE,
+                                    colnames=c("First Name","Surname","Role","Quantum ID",
+                                               "Bentham", "Safety Tool", "Categorisation Tool"))
   })
 
   output$prison_access_null<-shiny::renderText({
