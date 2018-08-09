@@ -17,7 +17,8 @@ shinyServer(function(input, output, session) {
 
   responses_subset <- shiny::reactive({
     responses[responses$prison == input$prison, c("first_name", "surname", "role", "quantum_id",
-                                                 "bentham", "safety", "categorisation")]})
+                                                 "bentham", "safety", "categorisation")]
+  })
 
   output$prison_access <- DT::renderDataTable({
     shiny::req(nrow(responses_subset()) > 0)

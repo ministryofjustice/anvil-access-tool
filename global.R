@@ -13,18 +13,18 @@ quantumErr <- 0
 responses <- s3tools::s3_path_to_full_df("alpha-app-anvil-access-tool/anvil-app-responses.csv", header = TRUE)
 names(responses) <- fields[-6]
 
-tick = "<i class=\"fa fa-check\" aria-hidden=\"true\"></i>"
-cross = "<i class=\"fa fa-times\" aria-hidden=\"true\"></i>"
+tick <- "<i class=\"fa fa-check de-color\" aria-hidden=\"true\"></i>"
+cross <- "<i class=\"fa fa-times de-color\" aria-hidden=\"true\"></i>"
 
 
 saveData <- function (data) {
-  
+
   #Reload data from S3
   responses <- data.table::as.data.table (s3tools::s3_path_to_full_df
                                           ("alpha-app-anvil-access-tool/anvil-app-responses.csv", header = TRUE))
-  
+
   data <- as.data.frame (t (data), stringsAsFactors = FALSE)
-  
+
   if (exists ("responses")) {
     bentham_check <- as.integer ("Bentham" %in% unlist (data [6]))
     safety_check <- as.integer ("Safety Diagnostic Tool" %in% unlist (data [6]))
@@ -40,7 +40,7 @@ saveData <- function (data) {
     responses$safety <- as.integer ("Safety Diagnostic Tool" %in% unlist (responses [1, 6]))
     responses$categorisation <- as.integer ("Prisoner Categorisation" %in% unlist (responses [1, 6]))
   }
-  
+
   #Format data and save to s3
   responses$prison <- as.character (responses$prison)
   responses$role <- as.character (responses$role)
@@ -48,8 +48,8 @@ saveData <- function (data) {
   responses$surname <- as.character (responses$surname)
   responses$quantum_id <- as.character (responses$quantum_id)
   responses$quantum_id <- tolower (responses$quantum_id)
-  
-  s3tools::write_df_to_csv_in_s3 (responses, 
+
+  s3tools::write_df_to_csv_in_s3 (responses,
                                   "alpha-app-anvil-access-tool/anvil-app-responses.csv",
                                   overwrite = TRUE,
                                   row.names = FALSE)
