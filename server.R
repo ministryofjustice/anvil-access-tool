@@ -39,7 +39,7 @@ shinyServer(function(input, output, session) {
   observeEvent(input$submitButton,{
 
     if (nchar(input$first_name)==0){
-      output$first_name_err<-shiny::renderText({"First Name must not be blank"})
+      output$first_name_err<-shiny::renderText({"First Name must not be blank."})
       output$first_name_icon<-shiny::renderUI({icon("times")})
       foundErrors<-1
     }else{
@@ -49,7 +49,7 @@ shinyServer(function(input, output, session) {
 
 
     if (nchar(input$surname)==0){
-      output$surname_err<-shiny::renderText({"Surname must not be blank"})
+      output$surname_err<-shiny::renderText({"Surname must not be blank."})
       output$surname_icon<-shiny::renderUI({icon("times")})
       foundErrors<-1
     }else{
@@ -59,7 +59,7 @@ shinyServer(function(input, output, session) {
 
 
     if (nchar(input$role)==0){
-      output$role_err<-shiny::renderText({"Role must not be blank"})
+      output$role_err<-shiny::renderText({"Role must not be blank."})
       output$role_icon<-shiny::renderUI({icon("times")})
       foundErrors<-1
     }else{
@@ -67,8 +67,8 @@ shinyServer(function(input, output, session) {
       output$role_icon<-shiny::renderUI({icon("check")})
     }
 
-    if (nchar(input$prison)==0){
-      output$prison_err<-shiny::renderText({"Prison must not be blank"})
+    if ((input$prison)=="--Please Select Prison--"){
+      output$prison_err<-shiny::renderText({"Please select a prison."})
       output$prison_icon<-shiny::renderUI({icon("times")})
       foundErrors<-1
     }else{
@@ -78,7 +78,7 @@ shinyServer(function(input, output, session) {
 
 
     if(is.null(input$apps_needed)){
-      output$apps_err<-shiny::renderText({"Please select at least one app"})
+      output$apps_err<-shiny::renderText({"Please select at least one app."})
       output$apps_icon<-shiny::renderUI({icon("times")})
       foundErrors<-1
     }else{
@@ -90,8 +90,6 @@ shinyServer(function(input, output, session) {
     if (nchar(input$quantum_id)!=6){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
 
@@ -99,8 +97,6 @@ shinyServer(function(input, output, session) {
     if (substring(input$quantum_id,2,2)!="Q" && substring(input$quantum_id,2,2)!="q"){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
 
@@ -108,40 +104,30 @@ shinyServer(function(input, output, session) {
     if (!is.na(as.numeric(substring(input$quantum_id,1,1)))){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
     #Check 2nd character is character
     if (!is.na(as.numeric(substring(input$quantum_id,2,1)))){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
     #Check 3rd character is character
     if (!is.na(as.numeric(substring(input$quantum_id,3,1)))){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
     #Check 6th character is character
     if (!is.na(as.numeric(substring(input$quantum_id,6,1)))){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
     #Check 4th and 5th characters are numbers
     if (is.na(as.numeric(substring(input$quantum_id,4,5)))){
       foundErrors<-1
       quantumErr<-1
-    }else{
-      quantumErr<-0
     }
 
 
