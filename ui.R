@@ -4,12 +4,14 @@ library(shinyWidgets)
 library(shinythemes)
 library(data.table)
 library(shinyjs)
+library(shinyalert)
 
 
 # Define UI for application
 shinyUI(shiny::fluidPage(
 
   useShinyjs (),
+  useShinyalert(),
   shiny::includeCSS ("www/custom.css"),
   shiny::div (style = "background-color:WhiteSmoke;",
     id = "form",

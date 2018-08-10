@@ -4,6 +4,7 @@ library(shinyWidgets)
 library(shinyjs)
 library(data.table)
 library(DT)
+library(shinyalert)
 
 
 # Define server logic required to draw a histogram
@@ -149,12 +150,12 @@ shinyServer(function(input, output, session) {
 
     if (foundErrors == 1){
       #Show error message
-      shiny::showNotification(id = "error_notif", "Please correct the errors listed above.", type = "error", duration = 5)
+      shinyalert("There are errors in your submission. Please correct and resubmit.",type="error")
 
     }else{
       #Save data to responses datatable & show success message
       saveData (form_data())
-      shiny::showNotification(id = "success_notif", "Thank you. Your responses have been submitted successfully.", type = "message", duration = 5)
+      shinyalert("Thank you. Your responses have been submitted successfully.",type="success")
       shinyjs::reset("form")
       foundErrors <- 0
       quantumErr <- 0
