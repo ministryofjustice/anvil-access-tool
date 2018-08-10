@@ -159,7 +159,7 @@ Package: httpuv
 Source: CRAN
 Version: 1.4.5
 Hash: d59d9d6bdbc24087f6389921f899d4d4
-Requires: BH, Rcpp, later, promises
+Requires: Rcpp
 
 Package: httr
 Source: CRAN
@@ -282,14 +282,24 @@ Package: shiny
 Source: CRAN
 Version: 1.1.0
 Hash: ab653b45dba6dc82eef68fb1e18a3b1a
-Requires: R6, crayon, digest, htmltools, httpuv, jsonlite, later, mime,
-    promises, rlang, sourcetools, xtable
+Requires: R6, digest, jsonlite, mime, sourcetools, xtable, htmltools,
+    httpuv
 
 Package: shinyWidgets
 Source: CRAN
 Version: 0.4.3
 Hash: a5161a9baf5da9dbf041df853d79f49d
 Requires: htmltools, jsonlite, shiny
+
+Package: shinyalert
+Source: github
+Version: 1.0.0.9002
+Hash: 5ff3d2d7f6c03a3ae7ca962342486fcb
+Requires: digest, shiny
+GithubRepo: shinyalert
+GithubUsername: daattali
+GithubRef: master
+GithubSha1: affbcc3eaa53dd504e2444698acce1da09386eea
 
 Package: shinydashboard
 Source: CRAN
