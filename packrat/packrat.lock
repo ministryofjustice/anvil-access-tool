@@ -69,10 +69,6 @@ GithubRepo: aws.signature
 GithubUsername: cloudyr
 GithubRef: master
 GithubSha1: eef6bdd3b549826750d475efb049cbddf92ae62f
-RemoteHost: https://api.github.com
-RemoteRepo: aws.signature
-RemoteUsername: cloudyr
-RemoteSha: eef6bdd3b549826750d475efb049cbddf92ae62f
 
 Package: base64enc
 Source: CRAN
@@ -159,7 +155,7 @@ Package: httpuv
 Source: CRAN
 Version: 1.4.5
 Hash: d59d9d6bdbc24087f6389921f899d4d4
-Requires: Rcpp
+Requires: BH, Rcpp, later, promises
 
 Package: httr
 Source: CRAN
@@ -282,8 +278,8 @@ Package: shiny
 Source: CRAN
 Version: 1.1.0
 Hash: ab653b45dba6dc82eef68fb1e18a3b1a
-Requires: R6, digest, jsonlite, mime, sourcetools, xtable, htmltools,
-    httpuv
+Requires: R6, crayon, digest, htmltools, httpuv, jsonlite, later, mime,
+    promises, rlang, sourcetools, xtable
 
 Package: shinyWidgets
 Source: CRAN
