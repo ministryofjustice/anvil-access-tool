@@ -159,6 +159,12 @@ shinyServer(function(input, output, session) {
       saveData (form_data())
       shinyalert("Thank you. Your responses have been submitted successfully.", type = "success")
       shinyjs::reset("form")
+      output$first_name_icon<-renderText({""})
+      output$surname_icon<-renderText({""})
+      output$role_icon<-renderText({""})
+      output$prison_icon<-renderText({""})
+      output$apps_icon<-renderText({""})
+      output$quantum_icon<-renderText({""})
       foundErrors <- 0
       quantumErr <- 0
     }
