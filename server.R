@@ -17,8 +17,9 @@ shinyServer(function(input, output, session) {
 
 
   responses_subset <- shiny::reactive({
+    responses <- loadData()
     responses[responses$prison == input$prison, c("first_name", "surname", "role", "quantum_id",
-                                                 "bentham", "safety", "categorisation")]
+                                                 "bentham", "safety", "categorisation", "account")]
   })
 
   output$prison_access <- DT::renderDataTable({
@@ -31,10 +32,11 @@ shinyServer(function(input, output, session) {
                                                     paging = FALSE,
                                                     scrollCollapse = T,
                                                     dom = "t",
+                                                    scrollX = FALSE,
                                                     scrollY = "500px"),
                                                     rownames = FALSE,
                                                     colnames = c("First Name", "Surname", "Role", "Quantum ID",
-                                                    "Bentham", "Safety Tool", "Categorisation Tool"))
+                                                    "Bentham", "Safety Tool", "Categorisation Tool", "Account Status"))
   })
 
   output$prison_access_null <- shiny::renderText({
@@ -150,12 +152,12 @@ shinyServer(function(input, output, session) {
 
     if (foundErrors == 1){
       #Show error message
-      shinyalert("There are errors in your submission. Please correct and resubmit.",type="error")
+      shinyalert("There are errors in your submission. Please correct and resubmit.",type = "error")
 
     }else{
       #Save data to responses datatable & show success message
       saveData (form_data())
-      shinyalert("Thank you. Your responses have been submitted successfully.",type="success")
+      shinyalert("Thank you. Your responses have been submitted successfully.", type = "success")
       shinyjs::reset("form")
       foundErrors <- 0
       quantumErr <- 0
