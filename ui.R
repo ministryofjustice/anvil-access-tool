@@ -14,11 +14,11 @@ shinyUI(shiny::fluidPage(
   useShinyalert(),
   shiny::includeCSS ("www/custom.css"),
   shiny::div (style = "background-color:WhiteSmoke;",
-    id = "form",
 
     # Main page
     shiny::fluidRow (
-      shiny::column (width = 4, offset = 1, #class = "class_selections",
+      shiny::column (width = 4, #class = "class_selections",
+        id = "form",
         shiny::fluidRow (#class = "class_top_banner",
           shiny::div (class = "class_mainTitle",
                 "Anvil access request form")
@@ -156,10 +156,11 @@ shinyUI(shiny::fluidPage(
         )
       ),
 
-      shiny::column (width = 7,
+      shiny::column (width = 8,
         shiny::div (class = "class_access_msg",
-                      "The following users at your establishment
-                    already have access:"),
+                      "The following users at your establishment have already requested 
+                      access to the ticked apps. The final column states whether their account
+                      has been created."),
 
         shiny::div (class = "class_prison_null",
           shiny::textOutput ("prison_access_null")),
