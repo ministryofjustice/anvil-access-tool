@@ -69,6 +69,27 @@ shinyUI(shiny::fluidPage(
 
           shiny::div (class = "class_surname_err",
             shiny::textOutput ("surname_err")),
+          
+          # Section: Email address
+          shiny::fluidRow (
+            shiny::column (width = 10,
+                           shiny::div (class = "class_email",
+                                       shiny::textInput ("email",
+                                                         label = h3("Email:"),
+                                                         width = "100%")
+                           )
+            ),
+            
+            shiny::column (width = 1,
+                           shiny::div (
+                             shiny::uiOutput ("email_icon"))
+            )
+          ),
+          
+          shiny::div (class = "class_email_err",
+                      shiny::textOutput ("email_err")),
+          
+          
 
           # Section: prison
           shiny::fluidRow (
