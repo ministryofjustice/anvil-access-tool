@@ -65,6 +65,15 @@ shinyServer(function(input, output, session) {
       output$surname_err <- shiny::renderText({""})
       output$surname_icon <- shiny::renderUI({icon("check")})
     }
+    
+    if (nchar(input$email) == 0){
+      output$email_err <- shiny::renderText({"Email must not be blank."})
+      output$email_icon <- shiny::renderUI({icon("times")})
+      foundErrors <- 1
+    }else{
+      output$email_err <- shiny::renderText({""})
+      output$email_icon <- shiny::renderUI({icon("check")})
+    }
 
 
     if (nchar(input$role) == 0){
