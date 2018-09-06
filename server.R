@@ -65,14 +65,23 @@ shinyServer(function(input, output, session) {
       output$surname_err <- shiny::renderText({""})
       output$surname_icon <- shiny::renderUI({icon("check")})
     }
-    
-    if (nchar(input$email) == 0){
-      output$email_err <- shiny::renderText({"Email must not be blank."})
+
+    if (!grepl("@", input$email) || (grepl(",", input$email))) {
+      output$email_err <- shiny::renderText({"Email address invalid."})
       output$email_icon <- shiny::renderUI({icon("times")})
       foundErrors <- 1
     }else{
       output$email_err <- shiny::renderText({""})
       output$email_icon <- shiny::renderUI({icon("check")})
+    }
+
+    if ((input$email != input$email_confirmation) || nchar(input$email_confirmation) == 0 ) {
+      output$email_confirmation_err <- shiny::renderText({"Email does not match above."})
+      output$email_confirmation_icon <- shiny::renderUI({icon("times")})
+      foundErrors <- 1
+    }else{
+      output$email_confirmation_err <- shiny::renderText({""})
+      output$email_confirmation_icon <- shiny::renderUI({icon("check")})
     }
 
 

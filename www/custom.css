@@ -55,6 +55,11 @@
   font-weight: normal;
 }
 
+.class_email_confirmation{
+  padding-left:40px;
+  font-weight: normal;
+}
+
 .class_prison{
   padding-left:40px;
   font-weight: normal;
@@ -99,6 +104,11 @@
 }
 
 .class_email_err{
+  padding-left:40px;
+  color:red;
+}
+
+.class_email_confirmation_err{
   padding-left:40px;
   color:red;
 }

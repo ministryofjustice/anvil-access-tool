@@ -74,10 +74,10 @@ shinyUI(shiny::fluidPage(
           shiny::fluidRow (
             shiny::column (width = 10,
                            shiny::div (class = "class_email",
-                                       shiny::textInput ("email",
-                                                         label = h3("Email:"),
-                                                         width = "100%")
-                           )
+                                       shiny::textInput (
+                                         "email",
+                                         label = h3("Email:"),
+                                         width = "100%"))
             ),
             
             shiny::column (width = 1,
@@ -88,6 +88,24 @@ shinyUI(shiny::fluidPage(
           
           shiny::div (class = "class_email_err",
                       shiny::textOutput ("email_err")),
+           
+          shiny::fluidRow( 
+            shiny::column (width = 10,
+                           shiny::div (class = "class_email_confirmation",
+                                       shiny::textInput (
+                                         "email_confirmation",
+                                         label = h3("Please confirm email:"),
+                                         width = "100%"))
+            ),
+
+            shiny::column (width = 1,
+                           shiny::div (
+                             shiny::uiOutput ("email_confirmation_icon"))
+            )
+          ),
+          
+          shiny::div (class = "class_email_confirmation_err",
+                      shiny::textOutput ("email_confirmation_err")),
           
           
 

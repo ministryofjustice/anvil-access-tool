@@ -6,6 +6,8 @@ dt.prisons <- data.table::as.data.table(s3tools::s3_path_to_full_df(
 fields <- c("first_name", "surname", "prison", "role", "quantum_id",
             "apps_needed", "bentham", "safety", "categorisation", "account")
 
+email_choice <- c("@noms.gsi.gov.uk", "@justice.gov.uk", "@hmps.gov.uk", "@hmcts.gov.uk",
+                  "@probation.gov.uk", "@justice.gsi.gov.uk", "@digital.justice.gov.uk")
 foundErrors <- 0
 quantumErr <- 0
 
