@@ -4,7 +4,7 @@ dt.prisons <- data.table::as.data.table(s3tools::s3_path_to_full_df(
 
 
 fields <- c("first_name", "surname", "prison", "role", "quantum_id",
-            "apps_needed", "bentham", "safety", "categorisation", "account")
+            "apps_needed", "bentham", "safety", "categorisation", "account", "email")
 
 email_choice <- c("@noms.gsi.gov.uk", "@justice.gov.uk", "@hmps.gov.uk", "@hmcts.gov.uk",
                   "@probation.gov.uk", "@justice.gsi.gov.uk", "@digital.justice.gov.uk")
@@ -19,7 +19,7 @@ saveData <- function (data) {
   #Reload data from S3
   responses <- data.table::as.data.table (s3tools::s3_path_to_full_df
                                           ("alpha-app-anvil-access-tool/anvil-app-responses.csv", header = TRUE))
-  responses <- responses[,1:9]
+  responses <- responses[,1:10]
   names(responses) <- fields[-6]
   data <- as.data.frame (t (data), stringsAsFactors = FALSE)
   if (exists ("responses")) {
@@ -31,7 +31,7 @@ saveData <- function (data) {
     data$categorisation <- cat_check
     data$account<- "Requested"
     data <- data [, -6]
-    responses <- rbind (responses[,1:9], data)
+    responses <- rbind (responses[,1:10], data)
   }else{
     responses <- data
     responses$bentham <- as.integer ("Bentham" %in% unlist (responses [1, 6]))
@@ -58,7 +58,7 @@ saveData <- function (data) {
 loadData <- function() {
   responses <- data.table::as.data.table (s3tools::s3_path_to_full_df
                                           ("alpha-app-anvil-access-tool/anvil-app-responses.csv", header = TRUE))
-  responses <- responses[,1:9]
+  responses <- responses[, 1:10]
   names(responses) <- fields[-6]
   # data <- as.data.frame (t (data), stringsAsFactors = FALSE)
   responses
@@ -73,7 +73,7 @@ dt.prisons <- data.table::as.data.table(s3tools::s3_path_to_full_df(
 
 
 fields <- c("first_name", "surname", "prison", "role", "quantum_id",
-            "apps_needed", "bentham", "safety", "categorisation", "account")
+            "apps_needed", "bentham", "safety", "categorisation", "account", "email")
 
 foundErrors <- 0
 quantumErr <- 0

@@ -19,7 +19,7 @@ shinyServer(function(input, output, session) {
   responses_subset <- shiny::reactive({
     responses <- loadData()
     responses[responses$prison == input$prison, c("first_name", "surname", "role", "quantum_id",
-                                                 "bentham", "safety", "categorisation", "account")]
+                                                 "bentham", "safety", "categorisation", "account", "email")]
   })
 
   output$prison_access <- DT::renderDataTable({
@@ -28,7 +28,8 @@ shinyServer(function(input, output, session) {
     access_table$bentham <- ifelse (access_table$bentham == 1, tick, cross)
     access_table$safety <- ifelse (access_table$safety == 1, tick, cross)
     access_table$categorisation <- ifelse (access_table$categorisation == 1, tick, cross)
-    DT::datatable(access_table, escape = FALSE, options = list("searching" = FALSE,
+    # Render table but remove final column (9) so don't display email address as makes table too wide
+    DT::datatable(access_table[,-9], escape = FALSE, options = list("searching" = FALSE,
                                                     paging = FALSE,
                                                     scrollCollapse = T,
                                                     dom = "t",
