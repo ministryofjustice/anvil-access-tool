@@ -29,10 +29,10 @@ shinyServer(function(input, output, session) {
     access_table$safety <- ifelse (access_table$safety == 1, tick, cross)
     access_table$categorisation <- ifelse (access_table$categorisation == 1, tick, cross)
     # Render table but remove final column (9) so don't display email address as makes table too wide
-    DT::datatable(access_table[,-9], escape = FALSE, options = list("searching" = FALSE,
+    DT::datatable(access_table[,-9], escape = FALSE, options = list(
                                                     paging = FALSE,
                                                     scrollCollapse = T,
-                                                    dom = "t",
+                                                    dom = "ft", 
                                                     scrollX = FALSE,
                                                     scrollY = "500px"),
                                                     rownames = FALSE,
