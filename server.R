@@ -180,6 +180,8 @@ shinyServer(function(input, output, session) {
       shinyjs::reset("form")
       output$first_name_icon<-renderText({""})
       output$surname_icon<-renderText({""})
+      output$email_icon<-renderText({""})
+      output$email_confirmation_icon<-renderText({""})
       output$role_icon<-renderText({""})
       output$prison_icon<-renderText({""})
       output$apps_icon<-renderText({""})
