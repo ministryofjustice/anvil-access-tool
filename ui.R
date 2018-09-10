@@ -27,8 +27,10 @@ shinyUI(shiny::fluidPage(
         shiny::div (class = "class_selections",
           shiny::fluidRow (
             shiny::div (class = "class_intro",
-                "To gain access to the HMPPS Anvil apps,
-                please enter your details in the fields below and click submit.")
+                p("To gain access to the HMPPS Anvil apps,
+                please enter your details in the fields below and click submit."),
+                
+                p("If you have any issues submitting this form, please contact anvil@noms.gsi.gov.uk"))
           ),
 
           # Section First Name
