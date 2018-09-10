@@ -47,6 +47,7 @@ saveData <- function (data) {
   responses$surname <- as.character (responses$surname)
   responses$quantum_id <- as.character (responses$quantum_id)
   responses$quantum_id <- tolower (responses$quantum_id)
+  responses$email <- as.character(responses$email)
 
   s3tools::write_df_to_csv_in_s3 (responses,
                                   "alpha-app-anvil-access-tool/anvil-app-responses.csv",
