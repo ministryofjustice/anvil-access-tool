@@ -19,16 +19,16 @@ saveData <- function (data) {
     "alpha-app-anvil-access-tool/anvil-app-responses.csv", header = TRUE))
   responses <- responses[,1:10]
   names(responses) <- fields[-6]
-  data <- as.data.frame (t (data), stringsAsFactors = FALSE)
+  data <- as.data.frame (t(data), stringsAsFactors = FALSE)
   if (exists ("responses")) {
-    bentham_check <- as.integer ("Bentham" %in% unlist (data [6]))
-    safety_check <- as.integer ("Safety Diagnostic Tool" %in% unlist (data [6]))
-    cat_check <- as.integer ("Prisoner Categorisation" %in% unlist (data [6]))
+    bentham_check <- as.integer("Bentham" %in% unlist (data[6]))
+    safety_check <- as.integer("Safety Diagnostic Tool" %in% unlist (data[6]))
+    cat_check <- as.integer("Prisoner Categorisation" %in% unlist (data[6]))
     data$bentham <- bentham_check
     data$safety <- safety_check
     data$categorisation <- cat_check
     data$account<- "Requested"
-    data <- data [, -6]
+    data <- data[, -6]
     responses <- rbind (responses[,1:10], data)
   }else{
     responses <- data

@@ -6,7 +6,6 @@ library(data.table)
 library(DT)
 library(shinyalert)
 
-
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
 
@@ -165,7 +164,7 @@ shinyServer(function(input, output, session) {
       shinyalert("There are errors in your submission. Please correct and resubmit.",type = "error")
     } else {
       #Save data to responses datatable & show success message
-      saveData (form_data())
+      saveData(form_data())
       shinyalert("Thank you. Your responses have been submitted successfully.", type = "success")
       reset("form")
       output$first_name_icon<-renderText({""})
@@ -180,6 +179,4 @@ shinyServer(function(input, output, session) {
       quantumErr <- 0
     }
   })
-  
-  
 })

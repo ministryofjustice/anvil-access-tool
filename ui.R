@@ -154,7 +154,9 @@ shinyUI(
               column(width = 10,
                 div(class = "class_app_checkbox",
                   awesomeCheckboxGroup(inputId = "apps_needed",
-                                       label = "Please select which apps you require access to",
+                                       label = "Choose which apps you require access to.
+                                       Bentham requires permission from the Nationl
+                                       Intelligence Unit",
                                        choices = c("Safety Diagnostic Tool",
                                                    "Bentham", "Prisoner Categorisation"),
                                        inline = FALSE,
