@@ -18,7 +18,7 @@ shinyServer(function(input, output, session) {
     responses[responses$prison == input$prison, c("first_name", "surname", "role", "quantum_id",
                                                  "bentham", "safety", "categorisation", "account", "email")]
   })
-
+  
   output$prison_access <- renderDataTable({
     req(nrow(responses_subset()) > 0)
     access_table <- responses_subset()
@@ -101,6 +101,18 @@ shinyServer(function(input, output, session) {
 
     if(is.null(input$apps_needed)) {
       output$apps_err <- renderText({"Please select at least one app."})
+      output$apps_icon <- renderUI({icon("times")})
+      foundErrors <- 1
+    } else {
+      output$apps_err <- renderText({""})
+      output$apps_icon <- renderUI({icon("check")})
+    }
+    
+    ## check if this quantum id is already in the list
+    if(input$quantum_id %in% unlist(responses_subset()[, 4])) {
+      output$apps_err <- renderText({"This Quantum account already has access
+        or has requested access. If you think this is not the case please email
+        anvil@noms.gsi.gov.uk and explain your case"})
       output$apps_icon <- renderUI({icon("times")})
       foundErrors <- 1
     } else {
