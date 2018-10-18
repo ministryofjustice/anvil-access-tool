@@ -26,15 +26,16 @@ shinyServer(function(input, output, session) {
     access_table$safety <- ifelse(access_table$safety == 1, tick, cross)
     access_table$categorisation <- ifelse(access_table$categorisation == 1, tick, cross)
     # Render table but remove final column (9) so don't display email address as makes table too wide
-    datatable(access_table[,-9], escape = FALSE, options = list(
-                                                    paging = FALSE,
-                                                    scrollCollapse = T,
-                                                    dom = "ft", 
-                                                    scrollX = FALSE,
-                                                    scrollY = "500px"),
-                                                    rownames = FALSE,
-                                                    colnames = c("First Name", "Surname", "Role", "Quantum ID",
-                                                    "Bentham", "Safety Tool", "Categorisation Tool", "Account Status"))
+    datatable(access_table[,-9], escape = FALSE,
+              options = list(paging = FALSE,
+                             scrollCollapse = T,
+                             dom = "ft", 
+                             scrollX = FALSE,
+                             scrollY = "500px"),
+              rownames = FALSE,
+              colnames = c("First Name", "Surname", "Role", "Quantum ID",
+                           "Bentham", "Safety Tool", "Categorisation Tool",
+                           "Account Status"))
   })
 
   output$prison_access_null <- renderText({
