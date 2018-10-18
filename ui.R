@@ -183,10 +183,12 @@ shinyUI(
                       has been created."),
   
           div(class = "class_prison_null",
-            textOutput("prison_access_null")),
+            textOutput("prison_access_null")
+          ),
   
           div(class = "class_prison_access",
-            dataTableOutput("prison_access"))
+            dataTableOutput("prison_access")
+          )
         )
       )
     )
