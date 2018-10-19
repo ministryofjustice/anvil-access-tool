@@ -1,11 +1,12 @@
 ## global.R
 
 ## Load libraries
-library(shiny)
+library(shiny)          ##
 library(shinydashboard) ##
 library(shinyWidgets)   ##
 library(shinythemes)    ##
 library(data.table)     ##
+library(DT)             ##
 library(shinyjs)        ##
 library(shinyalert)     ##
 
