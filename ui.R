@@ -1,12 +1,5 @@
-library(shiny)          ##
-library(shinydashboard) ##
-library(shinyWidgets)   ##
-library(shinythemes)    ##
-library(data.table)     ##
-library(shinyjs)        ##
-library(shinyalert)     ##
+## ui.R
 
-## Define UI for application
 shinyUI(
   shiny::fluidPage(
 

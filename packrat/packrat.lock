@@ -1,5 +1,5 @@
 PackratFormat: 1.4
-PackratVersion: 0.4.8.1
+PackratVersion: 0.4.9.3
 RVersion: 3.4.2
 Repos: BioCsoft=https://bioconductor.org/packages/3.6/bioc,
     BioCann=https://bioconductor.org/packages/3.6/data/annotation,
@@ -142,7 +142,7 @@ Hash: cd78381a9d3fea966ac39bd0daaf5554
 Package: htmltools
 Source: CRAN
 Version: 0.3.6
-Hash: 10db2fe4e1ac6057e5555db165a0d870
+Hash: 87bd72cdfc46f686bbd46b180cb5f0b5
 Requires: Rcpp, digest
 
 Package: htmlwidgets
@@ -154,7 +154,7 @@ Requires: htmltools, jsonlite, yaml
 Package: httpuv
 Source: CRAN
 Version: 1.4.5
-Hash: d59d9d6bdbc24087f6389921f899d4d4
+Hash: a21b769562c800e73d417208d7b242ab
 Requires: BH, Rcpp, later, promises
 
 Package: httr
@@ -176,7 +176,7 @@ Hash: ecf589b42cd284b03a4beb9665482d3e
 Package: later
 Source: CRAN
 Version: 0.7.3
-Hash: 81e7be46b2a82215cce3f7f0d3abd625
+Hash: 087b02f5b287d252fc78a4489de3ff3b
 Requires: BH, Rcpp, rlang
 
 Package: lattice
@@ -236,19 +236,19 @@ Requires: cli, crayon, fansi, rlang, utf8
 Package: plyr
 Source: CRAN
 Version: 1.8.4
-Hash: 39dd3286b865c7b725d74c9a4c1b7931
+Hash: 05d65ee369a267f0d0c56604000c69b5
 Requires: Rcpp
 
 Package: promises
 Source: CRAN
 Version: 1.0.1
-Hash: 691c12aebcf1b15b3f916e981a2c124c
+Hash: 1e5d5469b95be6e1b6cd8c35e3bdea60
 Requires: R6, Rcpp, later, magrittr, rlang
 
 Package: reshape2
 Source: CRAN
 Version: 1.4.3
-Hash: 8b30de99bcf5d40fa1e3be0809ecce8e
+Hash: a08472524968be4e233b4c8d0ae5aef1
 Requires: Rcpp, plyr, stringr
 
 Package: rlang
@@ -270,7 +270,7 @@ GithubSha1: f8fcdada410e37e79133cebb62215c00c3ee0986
 Package: scales
 Source: CRAN
 Version: 0.5.0
-Hash: 77d3b989d0995d27c9b2fa7da4093f34
+Hash: ba1cc82f671616a93baa1eda27e4e364
 Requires: R6, RColorBrewer, Rcpp, dichromat, labeling, munsell, plyr,
     viridisLite
 
@@ -355,7 +355,7 @@ Hash: d534108bcd5f34ec73e9eb523751ba20
 Package: xml2
 Source: CRAN
 Version: 1.2.0
-Hash: f86bfbc77ad5413511792739b7d31d80
+Hash: 1ee43aa8f57efa79384f290459c138b6
 Requires: Rcpp
 
 Package: xtable

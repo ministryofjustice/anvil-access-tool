@@ -1,3 +1,15 @@
+## global.R
+
+## Load libraries
+library(shiny)          ##
+library(shinydashboard) ##
+library(shinyWidgets)   ##
+library(shinythemes)    ##
+library(data.table)     ##
+library(DT)             ##
+library(shinyjs)        ##
+library(shinyalert)     ##
+
 ## Load prison dropdown from s3
 dt.prisons <- data.table::as.data.table(s3tools::s3_path_to_full_df(
   "alpha-app-anvil-access-tool/prisons_and_offices_v2.csv", header = FALSE))
