@@ -1,10 +1,4 @@
-library(shiny)
-library(shinydashboard)
-library(shinyWidgets)
-library(shinyjs)
-library(data.table)
-library(DT)
-library(shinyalert)
+## server.R
 
 ## Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
