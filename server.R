@@ -6,7 +6,7 @@ library(data.table)
 library(DT)
 library(shinyalert)
 
-# Define server logic required to draw a histogram
+## Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
 
   form_data <- reactive({
@@ -15,8 +15,9 @@ shinyServer(function(input, output, session) {
 
   responses_subset <- reactive({
     responses <- loadData()
-    responses[responses$prison == input$prison, c("first_name", "surname", "role", "quantum_id",
-                                                 "bentham", "safety", "categorisation", "account", "email")]
+    responses[responses$prison == input$prison,
+              c("first_name", "surname", "role", "quantum_id",
+                "bentham", "safety", "categorisation", "account", "email")]
   })
   
   output$prison_access <- renderDataTable({
@@ -25,7 +26,9 @@ shinyServer(function(input, output, session) {
     access_table$bentham <- ifelse(access_table$bentham == 1, tick, cross)
     access_table$safety <- ifelse(access_table$safety == 1, tick, cross)
     access_table$categorisation <- ifelse(access_table$categorisation == 1, tick, cross)
-    # Render table but remove final column (9) so don't display email address as makes table too wide
+    
+    ## Render table but remove final column (9) so don't display email address
+    ## as makes table too wide
     datatable(access_table[,-9], escape = FALSE,
               options = list(paging = FALSE,
                              scrollCollapse = T,
@@ -34,7 +37,7 @@ shinyServer(function(input, output, session) {
                              scrollY = "500px"),
               rownames = FALSE,
               colnames = c("First Name", "Surname", "Role", "Quantum ID",
-                           "Bentham", "Safety Tool", "Categorisation Tool",
+                           "Bentham", "Safety Tool", "Cat Tool",
                            "Account Status"))
   })
 
@@ -100,7 +103,9 @@ shinyServer(function(input, output, session) {
       output$prison_icon <- renderUI({icon("check")})
     }
 
-    if(is.null(input$apps_needed)) {
+    if(all(is.null(input$bentham),
+           is.null(input$safety),
+           is.null(input$categorisation))) {
       output$apps_err <- renderText({"Please select at least one app."})
       output$apps_icon <- renderUI({icon("times")})
       foundErrors <- 1
@@ -165,7 +170,8 @@ shinyServer(function(input, output, session) {
 
     #Print Quantum ID validation messages
     if(quantumErr == 1){
-      output$quantum_error <- renderText({"Quantum ID must be of the format: AAA99A with a Q as the second character."})
+      output$quantum_error <- renderText({"Quantum ID must be of the format:
+        AAA99A with a Q as the second character."})
       output$quantum_icon <- renderUI({icon("times")})
     } else {
       output$quantum_error <- renderText({""})
@@ -174,11 +180,13 @@ shinyServer(function(input, output, session) {
 
     if(foundErrors == 1){
       #Show error message
-      shinyalert("There are errors in your submission. Please correct and resubmit.",type = "error")
+      shinyalert("There are errors in your submission.
+                 Please correct and resubmit.",type = "error")
     } else {
       #Save data to responses datatable & show success message
       saveData(form_data())
-      shinyalert("Thank you. Your responses have been submitted successfully.", type = "success")
+      shinyalert("Thank you. Your responses have been submitted successfully.",
+                 type = "success")
       reset("form")
       output$first_name_icon<-renderText({""})
       output$surname_icon<-renderText({""})

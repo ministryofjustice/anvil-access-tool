@@ -153,15 +153,22 @@ shinyUI(
             fluidRow(
               column(width = 10,
                 div(class = "class_app_checkbox",
-                  awesomeCheckboxGroup(inputId = "apps_needed",
-                                       label = "Choose which apps you require access to.
-                                       Bentham requires permission from the Nationl
-                                       Intelligence Unit",
-                                       choices = c("Safety Diagnostic Tool",
-                                                   "Bentham", "Prisoner Categorisation"),
-                                       inline = FALSE,
-                                       status = "danger")
-                  )
+                  "Choose which apps you require access too",
+                  awesomeCheckbox(inputId = "safety",
+                                  label = "Safety Diagnostic Tool",
+                                  value = FALSE,
+                                  status = "danger"),
+                  div("Bentham and Prisoner Categorisation require permission from
+                      the National Intelligence Unit."),
+                  awesomeCheckbox(inputId = "bentham",
+                                  label = "Bentham",
+                                  value = FALSE,
+                                  status = "danger"),
+                  awesomeCheckbox(inputId = "categorisation",
+                                  label = "Prisoner Categorisation",
+                                  value = FALSE,
+                                  status = "danger")
+                )
               ),
               column(width = 1,
                 uiOutput("apps_icon")
