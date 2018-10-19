@@ -3,7 +3,7 @@ dt.prisons <- data.table::as.data.table(s3tools::s3_path_to_full_df(
   "alpha-app-anvil-access-tool/prisons_and_offices_v2.csv", header = FALSE))
 
 fields <- c("first_name", "surname", "prison", "role", "quantum_id",
-            "apps_needed", "bentham", "safety", "categorisation", "account", "email")
+            "bentham", "safety", "categorisation", "account", "email")
 
 email_choice <- c("@noms.gsi.gov.uk", "@justice.gov.uk", "@hmps.gov.uk", "@hmcts.gov.uk",
                   "@probation.gov.uk", "@justice.gsi.gov.uk", "@digital.justice.gov.uk")
@@ -15,26 +15,22 @@ cross <- "<i class=\"fa fa-times de-color\" aria-hidden=\"true\"></i>"
 
 saveData <- function (data) {
   ## Reload data from S3
-  responses <- data.table::as.data.table (s3tools::s3_path_to_full_df(
+  responses <- as.data.table(s3tools::s3_path_to_full_df(
     "alpha-app-anvil-access-tool/anvil-app-responses.csv", header = TRUE))
   responses <- responses[,1:10]
-  names(responses) <- fields[-6]
+  names(responses) <- fields
   data <- as.data.frame (t(data), stringsAsFactors = FALSE)
   if (exists ("responses")) {
-    bentham_check <- as.integer("Bentham" %in% unlist (data[6]))
-    safety_check <- as.integer("Safety Diagnostic Tool" %in% unlist (data[6]))
-    cat_check <- as.integer("Prisoner Categorisation" %in% unlist (data[6]))
-    data$bentham <- bentham_check
-    data$safety <- safety_check
-    data$categorisation <- cat_check
-    data$account<- "Requested"
-    data <- data[, -6]
+    data$bentham <- as.integer(data$bentham)
+    data$safety <- as.integer(data$safety)
+    data$categorisation <- as.integer(data$categorisation)
+    data$account <- "Requested"
     responses <- rbind (responses[,1:10], data)
   }else{
     responses <- data
-    responses$bentham <- as.integer ("Bentham" %in% unlist (responses [1, 6]))
-    responses$safety <- as.integer ("Safety Diagnostic Tool" %in% unlist (responses [1, 6]))
-    responses$categorisation <- as.integer ("Prisoner Categorisation" %in% unlist (responses [1, 6]))
+    responses$bentham <- as.integer(data$bentham)
+    responses$safety <- as.integer(data$safety)
+    responses$categorisation <- as.integer(data$categorisation)
     responses$account <- "Requested"
   }
 
@@ -54,10 +50,9 @@ saveData <- function (data) {
 }
 
 loadData <- function() {
-  responses <- data.table::as.data.table(s3tools::s3_path_to_full_df(
+  responses <- as.data.table(s3tools::s3_path_to_full_df(
     "alpha-app-anvil-access-tool/anvil-app-responses.csv", header = TRUE))
   responses <- responses[, 1:10]
-  names(responses) <- fields[-6]
-  # data <- as.data.frame (t (data), stringsAsFactors = FALSE)
+  names(responses) <- fields
   responses
 }
