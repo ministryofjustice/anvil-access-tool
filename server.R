@@ -1,12 +1,14 @@
 ## server.R
 
-## Define server logic required to draw a histogram
+## Define server logic
 shinyServer(function(input, output, session) {
 
   form_data <- reactive({
     data <- sapply(fields, function(x) input[[x]])
   })
 
+  # MS: Added Bentham reason
+  
   responses_subset <- reactive({
     responses <- loadData()
     responses[responses$prison == input$prison,
@@ -23,6 +25,7 @@ shinyServer(function(input, output, session) {
     
     ## Render table but remove final column (9) so don't display email address
     ## as makes table too wide
+    # MS: Also removing Bentham reason as not necessary, esp with table width
     datatable(access_table[,-9], escape = FALSE,
               options = list(paging = FALSE,
                              scrollCollapse = T,
@@ -171,6 +174,9 @@ shinyServer(function(input, output, session) {
       output$quantum_error <- renderText({""})
       output$quantum_icon <- renderUI({icon("check")})
     }
+    
+    # MS: Added error message for missing Bentham reason if Bentham ticked
+    
 
     if(foundErrors == 1){
       #Show error message

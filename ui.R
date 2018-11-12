@@ -146,7 +146,7 @@ shinyUI(
             fluidRow(
               column(width = 10,
                 div(class = "class_app_checkbox",
-                  "Choose which apps you require access too",
+                  "Choose which apps you require access to",
                   awesomeCheckbox(inputId = "safety",
                                   label = "Safety Diagnostic Tool",
                                   value = FALSE,
@@ -163,6 +163,7 @@ shinyUI(
                                   status = "danger")
                 )
               ),
+              
               column(width = 1,
                 uiOutput("apps_icon")
               )
@@ -170,6 +171,9 @@ shinyUI(
             div(class = "class_apps_error",
               textOutput("apps_err")
             ),
+            
+            # Section: Bentham reason
+            
             div(class = "class_submitButton",
               actionButton("submitButton", "Submit")
             )
