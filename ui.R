@@ -151,14 +151,14 @@ shinyUI(
                                   label = "Safety Diagnostic Tool",
                                   value = FALSE,
                                   status = "danger"),
-                  div("Bentham and Prisoner Categorisation require permission from
+                  div("Prisoner Categorisation and Bentham require permission from
                       the National Intelligence Unit."),
-                  awesomeCheckbox(inputId = "bentham",
-                                  label = "Bentham",
-                                  value = FALSE,
-                                  status = "danger"),
                   awesomeCheckbox(inputId = "categorisation",
                                   label = "Prisoner Categorisation",
+                                  value = FALSE,
+                                  status = "danger"),
+                  awesomeCheckbox(inputId = "bentham",
+                                  label = "Bentham",
                                   value = FALSE,
                                   status = "danger")
                 )
@@ -177,16 +177,18 @@ shinyUI(
             fluidRow(
               column(width = 10,
                      div(class = "class_bentham_reason",
-                         textInput("bentham_reason",
-                                   label = h5("Please outline why you require access to the Bentham app:"),
-                                   width = "100%")
+                         textAreaInput("bentham_reason",
+                                   label = h5("If you are requesting access to the Bentham app,
+                                              please outline why access is required:"),
+                                   width = "100%",
+                                   height = "100px")
                      )
               ),
               column(width = 1,
                      div(uiOutput("bentham_reason_icon"))
               )
             ),
-            div(class = "class_bentham_reason_err",
+            div(class = "class_bentham_reason_error",
                 textOutput("bentham_reason_err")
             ),
             
