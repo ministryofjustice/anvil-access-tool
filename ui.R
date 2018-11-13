@@ -174,6 +174,22 @@ shinyUI(
             
             # Section: Bentham reason
             
+            fluidRow(
+              column(width = 10,
+                     div(class = "class_bentham_reason",
+                         textInput("bentham_reason",
+                                   label = h5("Please outline why you require access to the Bentham app:"),
+                                   width = "100%")
+                     )
+              ),
+              column(width = 1,
+                     div(uiOutput("bentham_reason_icon"))
+              )
+            ),
+            div(class = "class_bentham_reason_err",
+                textOutput("bentham_reason_err")
+            ),
+            
             div(class = "class_submitButton",
               actionButton("submitButton", "Submit")
             )

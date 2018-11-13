@@ -6,14 +6,13 @@ shinyServer(function(input, output, session) {
   form_data <- reactive({
     data <- sapply(fields, function(x) input[[x]])
   })
-
-  # MS: Added Bentham reason
   
   responses_subset <- reactive({
     responses <- loadData()
     responses[responses$prison == input$prison,
               c("first_name", "surname", "role", "quantum_id",
-                "bentham", "safety", "categorisation", "account", "email")]
+                "bentham", "bentham_reason", "safety", "categorisation", 
+                "account", "email")]
   })
   
   output$prison_access <- renderDataTable({
@@ -23,10 +22,10 @@ shinyServer(function(input, output, session) {
     access_table$safety <- ifelse(access_table$safety == 1, tick, cross)
     access_table$categorisation <- ifelse(access_table$categorisation == 1, tick, cross)
     
-    ## Render table but remove final column (9) so don't display email address
-    ## as makes table too wide
-    # MS: Also removing Bentham reason as not necessary, esp with table width
-    datatable(access_table[,-9], escape = FALSE,
+    ## Render table but remove columns 6 and 10 so don't display email address
+    ## or Bentham reason as makes table too wide
+
+    datatable(access_table[, -c(6,10)], escape = FALSE,
               options = list(paging = FALSE,
                              scrollCollapse = T,
                              dom = "ft", 
@@ -175,8 +174,16 @@ shinyServer(function(input, output, session) {
       output$quantum_icon <- renderUI({icon("check")})
     }
     
-    # MS: Added error message for missing Bentham reason if Bentham ticked
-    
+    # Check Bentham reason if Bentham ticked
+    if(is.null(input$bentham) == FALSE &
+       is.null(input$bentham_reason)) {
+      output$bentham_reason_err <- renderText({"Please provide a reason why access to the Bentham app is required."})
+      output$bentham_reason_icon <- renderUI({icon("times")})
+      foundErrors <- 1
+    } else {
+      output$bentham_reason_err <- renderText({""})
+      output$bentham_reason_icon <- renderUI({icon("check")})
+    }  
 
     if(foundErrors == 1){
       #Show error message
@@ -196,6 +203,7 @@ shinyServer(function(input, output, session) {
       output$prison_icon<-renderText({""})
       output$apps_icon<-renderText({""})
       output$quantum_icon<-renderText({""})
+      output$bentham_reason_icon<-renderText({""})
       foundErrors <- 0
       quantumErr <- 0
     }
