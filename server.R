@@ -175,8 +175,8 @@ shinyServer(function(input, output, session) {
     }
     
     # Check Bentham reason if Bentham ticked
-    if(is.null(input$bentham) == FALSE &
-       is.null(input$bentham_reason)) {
+    if(input$bentham == TRUE &
+       input$bentham_reason == "") {
       output$bentham_reason_err <- renderText({"Please provide a reason why access to the Bentham app is required."})
       output$bentham_reason_icon <- renderUI({icon("times")})
       foundErrors <- 1

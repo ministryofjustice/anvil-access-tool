@@ -181,7 +181,7 @@ shinyUI(
                                    label = h5("If you are requesting access to the Bentham app,
                                               please outline why access is required:"),
                                    width = "100%",
-                                   height = "100px")
+                                   rows = 6)
                      )
               ),
               column(width = 1,
@@ -189,7 +189,8 @@ shinyUI(
               )
             ),
             div(class = "class_bentham_reason_error",
-                textOutput("bentham_reason_err")
+                textOutput("bentham_reason_err"),
+                br()
             ),
             
             div(class = "class_submitButton",
