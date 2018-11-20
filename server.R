@@ -118,7 +118,7 @@ shinyServer(function(input, output, session) {
          input$categorisation == T)) {
       output$apps_err <- renderText({"This Quantum account already has access
         or has requested access. If you think this is not the case please email
-        anvil@noms.gsi.gov.uk and explain your case"})
+        anvil@noms.gsi.gov.uk and explain your case."})
       output$apps_icon <- renderUI({icon("times")})
       foundErrors <- 1
     } else {
