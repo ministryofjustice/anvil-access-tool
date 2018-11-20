@@ -28,7 +28,7 @@ cross <- "<i class=\"fa fa-times de-color\" aria-hidden=\"true\"></i>"
 saveData <- function (data) {
   ## Reload data from S3
   responses <- as.data.table(s3tools::s3_path_to_full_df(
-    "alpha-app-anvil-access-tool/anvil-app-responses.csv", header = TRUE))
+    "alpha-app-anvil-access-tool/anvil-app-responses-prevreq.csv", header = TRUE))
   responses <- responses[,1:10]
   names(responses) <- fields
   data <- as.data.frame (t(data), stringsAsFactors = FALSE)
@@ -56,15 +56,16 @@ saveData <- function (data) {
   responses$email <- as.character(responses$email)
 
   s3tools::write_df_to_csv_in_s3 (responses,
-                                  "alpha-app-anvil-access-tool/anvil-app-responses.csv",
+                                  "alpha-app-anvil-access-tool/anvil-app-responses-prevreq.csv",
                                   overwrite = TRUE,
                                   row.names = FALSE)
 }
 
 loadData <- function() {
   responses <- as.data.table(s3tools::s3_path_to_full_df(
-    "alpha-app-anvil-access-tool/anvil-app-responses.csv", header = TRUE))
+    "alpha-app-anvil-access-tool/anvil-app-responses.csv-prevreq", header = TRUE))
   responses <- responses[, 1:10]
   names(responses) <- fields
   responses
 }
+
