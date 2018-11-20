@@ -109,7 +109,13 @@ shinyServer(function(input, output, session) {
     }
     
     ## check if this quantum id is already in the list
-    if(input$quantum_id %in% unlist(responses_subset()[, 4])) {
+    if(input$quantum_id %in% unlist(responses_subset()[, 4]) &
+       ((input$quantum_id %in% unlist(responses_subset()[, 5]) &
+         input$bentham == T) |
+       (input$quantum_id %in% unlist(responses_subset()[, 6]) &
+         input$safety == T) |
+       (input$quantum_id %in% unlist(responses_subset()[, 7]) &
+         input$categorisation == T))) {
       output$apps_err <- renderText({"This Quantum account already has access
         or has requested access. If you think this is not the case please email
         anvil@noms.gsi.gov.uk and explain your case"})

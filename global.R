@@ -63,7 +63,7 @@ saveData <- function (data) {
 
 loadData <- function() {
   responses <- as.data.table(s3tools::s3_path_to_full_df(
-    "alpha-app-anvil-access-tool/anvil-app-responses.csv-prevreq", header = TRUE))
+    "alpha-app-anvil-access-tool/anvil-app-responses-prevreq.csv", header = TRUE))
   responses <- responses[, 1:10]
   names(responses) <- fields
   responses
