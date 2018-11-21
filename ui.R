@@ -6,8 +6,11 @@ shinyUI(
     useShinyjs(),
     useShinyalert(),
     includeCSS("www/custom.css"),
+    tags$meta("http-equiv" = "X-UA-compatible", content = "IE = edge"), ##to warn off IE users
+    includeScript("IE.js"), ##to warn off IE users
     div(style = "background-color:WhiteSmoke;",
 
+        
       ## Main page
       fluidRow(
         column(width = 4, #class = "class_selections",
