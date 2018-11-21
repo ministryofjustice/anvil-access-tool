@@ -3,19 +3,6 @@
 ## Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
 
-  ##TESTING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  observe({
-    # print("---------------session")
-    # print(session)
-    # print("---------------session$request")
-    # print(session$request)
-    print("---------------session$request$HTTP_USER_AGENT")
-    print(session$request$HTTP_USER_AGENT)
-    print(session$request$HTTP_USER_AGENT %like% "Mozilla")
-  })
-  ##TESTING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  
-  
   form_data <- reactive({
     data <- sapply(fields, function(x) input[[x]])
   })

@@ -7,7 +7,7 @@ shinyUI(
     useShinyalert(),
     includeCSS("www/custom.css"),
     tags$meta("http-equiv" = "X-UA-compatible", content = "IE = edge"), ##to warn off IE users
-    includeScript("IE.js"), ##to warn off IE users
+    includeScript("www/IE.js"),                                         ##to warn off IE users
     div(style = "background-color:WhiteSmoke;",
 
         
