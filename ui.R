@@ -174,19 +174,10 @@ shinyUI(
             
             # Section: Bentham reason
             
-            fluidRow(
-              column(width = 10,
-                     div(class = "class_bentham_reason",
-                         textAreaInput("bentham_reason",
-                                   label = h5("If you are requesting access to the Bentham app,
-                                              please outline why access is required:"),
-                                   width = "100%",
-                                   rows = 6)
-                     )
-              ),
+            uiOutput("bentham_check"),
+            
               column(width = 1,
                      div(uiOutput("bentham_reason_icon"))
-              )
             ),
             div(class = "class_bentham_reason_error",
                 textOutput("bentham_reason_err"),

@@ -42,6 +42,20 @@ shinyServer(function(input, output, session) {
     "No users at your prison have access."
   })
 
+  #Show Bentham reason box if require access to Bentham
+  
+  output$bentham_check <- renderUI({
+    if (input$bentham == TRUE){
+      fluidRow(column(width = 10,
+                      div(class = "class_bentham_reason",
+                          textAreaInput("bentham_reason",
+                                        label = h5("If you are requesting access to the Bentham app,
+                                              please outline why access is required:"),
+                                        width = "100%",
+                                        rows = 6)
+                      )))
+    }})
+  
   #Submit Button action
   observeEvent(input$submitButton, {
     if(nchar(input$first_name) == 0) {
