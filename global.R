@@ -74,3 +74,4 @@ loadData <- function() {
   names(responses) <- fields
   responses
 }
+
