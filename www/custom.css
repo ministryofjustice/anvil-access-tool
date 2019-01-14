@@ -88,6 +88,11 @@
   padding-left:40px;
 }
 
+.class_bentham_reason{
+  padding-left:40px;
+  font-weight: normal;
+}
+
 
 .class_submitButton{
   padding-left:40px;
@@ -129,6 +134,11 @@
 }
 
 .class_apps_error{
+  padding-left:40px;
+  color:red;
+}
+
+.class_bentham_reason_error{
   padding-left:40px;
   color:red;
 }

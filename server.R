@@ -1,17 +1,18 @@
 ## server.R
 
-## Define server logic required to draw a histogram
+## Define server logic
 shinyServer(function(input, output, session) {
 
   form_data <- reactive({
     data <- sapply(fields, function(x) input[[x]])
   })
-
+  
   responses_subset <- reactive({
     responses <- loadData()
     responses[responses$prison == input$prison,
               c("first_name", "surname", "role", "quantum_id",
-                "bentham", "safety", "categorisation", "account", "email")]
+                "bentham", "bentham_reason", "safety", "categorisation", 
+                "account", "email")]
   })
   
   output$prison_access <- renderDataTable({
@@ -21,9 +22,10 @@ shinyServer(function(input, output, session) {
     access_table$safety <- ifelse(access_table$safety == 1, tick, cross)
     access_table$categorisation <- ifelse(access_table$categorisation == 1, tick, cross)
     
-    ## Render table but remove final column (9) so don't display email address
-    ## as makes table too wide
-    datatable(access_table[,-9], escape = FALSE,
+    ## Render table but remove columns 6 and 10 so don't display email address
+    ## or Bentham reason as makes table too wide
+
+    datatable(access_table[, -c(6,10)], escape = FALSE,
               options = list(paging = FALSE,
                              scrollCollapse = T,
                              dom = "ft", 
@@ -40,6 +42,20 @@ shinyServer(function(input, output, session) {
     "No users at your prison have access."
   })
 
+  #Show Bentham reason box if require access to Bentham
+  
+  output$bentham_check <- renderUI({
+    if (input$bentham == TRUE){
+      fluidRow(column(width = 10,
+                      div(class = "class_bentham_reason",
+                          textAreaInput("bentham_reason",
+                                        label = h5("If you are requesting access to the Bentham app,
+                                              please outline why access is required:"),
+                                        width = "100%",
+                                        rows = 6)
+                      )))
+    }})
+  
   #Submit Button action
   observeEvent(input$submitButton, {
     if(nchar(input$first_name) == 0) {
@@ -171,6 +187,17 @@ shinyServer(function(input, output, session) {
       output$quantum_error <- renderText({""})
       output$quantum_icon <- renderUI({icon("check")})
     }
+    
+    # Check Bentham reason if Bentham ticked
+    if(input$bentham == TRUE &
+       input$bentham_reason == "") {
+      output$bentham_reason_err <- renderText({"Please provide a reason why access to the Bentham app is required."})
+      output$bentham_reason_icon <- renderUI({icon("times")})
+      foundErrors <- 1
+    } else {
+      output$bentham_reason_err <- renderText({""})
+      output$bentham_reason_icon <- renderUI({icon("check")})
+    }  
 
     if(foundErrors == 1){
       #Show error message
@@ -190,6 +217,7 @@ shinyServer(function(input, output, session) {
       output$prison_icon<-renderText({""})
       output$apps_icon<-renderText({""})
       output$quantum_icon<-renderText({""})
+      output$bentham_reason_icon<-renderText({""})
       foundErrors <- 0
       quantumErr <- 0
     }

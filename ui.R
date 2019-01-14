@@ -146,23 +146,24 @@ shinyUI(
             fluidRow(
               column(width = 10,
                 div(class = "class_app_checkbox",
-                  "Choose which apps you require access too",
+                  "Choose which apps you require access to",
                   awesomeCheckbox(inputId = "safety",
                                   label = "Safety Diagnostic Tool",
                                   value = FALSE,
                                   status = "danger"),
-                  div("Bentham and Prisoner Categorisation require permission from
+                  div("Prisoner Categorisation and Bentham require permission from
                       the National Intelligence Unit."),
-                  awesomeCheckbox(inputId = "bentham",
-                                  label = "Bentham",
-                                  value = FALSE,
-                                  status = "danger"),
                   awesomeCheckbox(inputId = "categorisation",
                                   label = "Prisoner Categorisation",
+                                  value = FALSE,
+                                  status = "danger"),
+                  awesomeCheckbox(inputId = "bentham",
+                                  label = "Bentham",
                                   value = FALSE,
                                   status = "danger")
                 )
               ),
+              
               column(width = 1,
                 uiOutput("apps_icon")
               )
@@ -170,6 +171,19 @@ shinyUI(
             div(class = "class_apps_error",
               textOutput("apps_err")
             ),
+            
+            # Section: Bentham reason
+            
+            uiOutput("bentham_check"),
+            
+              column(width = 1,
+                     div(uiOutput("bentham_reason_icon"))
+            ),
+            div(class = "class_bentham_reason_error",
+                textOutput("bentham_reason_err"),
+                br()
+            ),
+            
             div(class = "class_submitButton",
               actionButton("submitButton", "Submit")
             )
