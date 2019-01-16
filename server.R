@@ -15,6 +15,7 @@ shinyServer(function(input, output, session) {
                 "account", "email")]
   })
   
+  
   output$prison_access <- renderDataTable({
     req(nrow(responses_subset()) > 0)
     access_table <- responses_subset()
@@ -125,13 +126,8 @@ shinyServer(function(input, output, session) {
     }
     
     ## check if this quantum id is already in the list
-    if(input$quantum_id %in% unlist(responses_subset()[, 4]) &
-       (unlist(responses_subset()[, 5]) == 1 &
-         input$bentham == T) |
-       (unlist(responses_subset()[, 6]) == 1 &
-         input$safety == T) |
-       (unlist(responses_subset()[, 7]) == 1 &
-         input$categorisation == T)) {
+    print(colnames(responses_subset()))
+    if(input$quantum_id %in% unlist(responses_subset()[, 4])) {
       output$apps_err <- renderText({"This Quantum account already has access
         or has requested access. If you think this is not the case please email
         anvil@noms.gsi.gov.uk and explain your case."})
@@ -195,7 +191,7 @@ shinyServer(function(input, output, session) {
     }
     
     # Check Bentham reason if Bentham ticked
-    if(input$bentham == TRUE &
+    if(input$bentham == TRUE &&
        input$bentham_reason == "") {
       output$bentham_reason_err <- renderText({"Please provide a reason why access to the Bentham app is required."})
       output$bentham_reason_icon <- renderUI({icon("times")})
