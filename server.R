@@ -51,7 +51,7 @@ shinyServer(function(input, output, session) {
                       div(class = "class_bentham_reason",
                           textAreaInput("bentham_reason",
                                         label = h5("If you are requesting access to the Bentham app,
-                                              please outline why access is required:"),
+                                              you must outline why access is required:"),
                                         width = "100%",
                                         rows = 6)
                       )))
@@ -126,8 +126,17 @@ shinyServer(function(input, output, session) {
     }
     
     ## check if this quantum id is already in the list
-    print(colnames(responses_subset()))
-    if(input$quantum_id %in% unlist(responses_subset()[, 4])) {
+    if(input$quantum_id %in% unlist(responses_subset()[, 4]) &
+       ((input$quantum_id %in% unlist(responses_subset()[, 5]) &
+       (unlist(responses_subset()[, 5]) == 1 &
+         input$bentham == T) |
+       (input$quantum_id %in% unlist(responses_subset()[, 6]) &
+       (unlist(responses_subset()[, 6]) == 1 &
+         input$safety == T) |
+       (input$quantum_id %in% unlist(responses_subset()[, 7]) &
+         input$categorisation == T))) {
+       (unlist(responses_subset()[, 7]) == 1 &
+         input$categorisation == T)) {
       output$apps_err <- renderText({"This Quantum account already has access
         or has requested access. If you think this is not the case please email
         anvil@noms.gsi.gov.uk and explain your case."})
@@ -138,12 +147,19 @@ shinyServer(function(input, output, session) {
       output$apps_icon <- renderUI({icon("check")})
     }
 
+    #Check Bentham reason text is complete (if selected)
+    if(input$bentham == TRUE & is.null(input$bentham_reason_err)) {
+      foundErrors <- 1
+      output$apps_err <- renderText({"You need to include a reason if you 
+        are requesting Bentham access."})
+    }
+    
     #Check ID is 6 characters long
     if(nchar(input$quantum_id) != 6) {
       foundErrors <- 1
       quantumErr <- 1
     }
-
+    
     #Check second letter of ID is "Q"
     if(substring(input$quantum_id, 2, 2) != "Q" && substring(input$quantum_id, 2, 2) != "q") {
       foundErrors <- 1
