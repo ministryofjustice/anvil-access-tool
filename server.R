@@ -126,26 +126,22 @@ shinyServer(function(input, output, session) {
     }
     
     ## check if this quantum id is already in the list
-    if(input$quantum_id %in% unlist(responses_subset()[, 4]) &
-       ((input$quantum_id %in% unlist(responses_subset()[, 5]) &
-       (unlist(responses_subset()[, 5]) == 1 &
-         input$bentham == T) |
-       (input$quantum_id %in% unlist(responses_subset()[, 6]) &
-       (unlist(responses_subset()[, 6]) == 1 &
-         input$safety == T) |
-       (input$quantum_id %in% unlist(responses_subset()[, 7]) &
-         input$categorisation == T))) {
-       (unlist(responses_subset()[, 7]) == 1 &
-         input$categorisation == T)) {
-      output$apps_err <- renderText({"This Quantum account already has access
-        or has requested access. If you think this is not the case please email
-        anvil@noms.gsi.gov.uk and explain your case."})
-      output$apps_icon <- renderUI({icon("times")})
-      foundErrors <- 1
-    } else {
-      output$apps_err <- renderText({""})
-      output$apps_icon <- renderUI({icon("check")})
-    }
+   if(input$quantum_id %in% unlist(responses_subset()[, 4]) &
+      (unlist(responses_subset()[quantum_id == input$quantum_id, 5]) == 1 &
+        input$bentham == T) |
+      (unlist(responses_subset()[quantum_id == input$quantum_id, 7]) == 1 &
+        input$safety == T) |
+      (unlist(responses_subset()[quantum_id == input$quantum_id, 8]) == 1 &
+        input$categorisation == T)) {
+     output$apps_err <- renderText({"This Quantum account already has access
+       or has requested access. If you think this is not the case please email
+       anvil@noms.gsi.gov.uk and explain your case."})
+     output$apps_icon <- renderUI({icon("times")})
+     foundErrors <- 1
+   } else {
+     output$apps_err <- renderText({""})
+     output$apps_icon <- renderUI({icon("check")})
+   }
 
     #Check Bentham reason text is complete (if selected)
     if(input$bentham == TRUE & is.null(input$bentham_reason_err)) {
