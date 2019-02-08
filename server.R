@@ -126,28 +126,32 @@ shinyServer(function(input, output, session) {
     }
     
     ## check if this quantum id is already in the list
-   if(input$quantum_id %in% unlist(responses_subset()[, 4]) &
-      (unlist(responses_subset()[quantum_id == input$quantum_id, 5]) == 1 &
-        input$bentham == T) |
-      (unlist(responses_subset()[quantum_id == input$quantum_id, 7]) == 1 &
-        input$safety == T) |
-      (unlist(responses_subset()[quantum_id == input$quantum_id, 8]) == 1 &
-        input$categorisation == T)) {
-     output$apps_err <- renderText({"This Quantum account already has access
+    if(input$quantum_id %in% unlist(responses_subset()[, 4])) {
+      
+      ## if any requests are made where access doesn't already exist
+      if (any((all(unlist(responses_subset()[quantum_id == input$quantum_id, 5]) == 0) &
+               input$bentham == T) |
+              (all(unlist(responses_subset()[quantum_id == input$quantum_id, 7]) == 0) &
+               input$safety == T) |
+              (all(unlist(responses_subset()[quantum_id == input$quantum_id, 8]) == 0) &
+               input$categorisation == T))) {
+        
+        output$apps_err <- renderText({""})
+        output$apps_icon <- renderUI({icon("check")})
+        
+      ##only requests made are for apps where access exists
+      } else {
+        
+        output$apps_err <- renderText({"This Quantum account already has access
        or has requested access. If you think this is not the case please email
        anvil@noms.gsi.gov.uk and explain your case."})
-     output$apps_icon <- renderUI({icon("times")})
-     foundErrors <- 1
-   } else {
-     output$apps_err <- renderText({""})
-     output$apps_icon <- renderUI({icon("check")})
-   }
-
-    #Check Bentham reason text is complete (if selected)
-    if(input$bentham == TRUE & is.null(input$bentham_reason_err)) {
-      foundErrors <- 1
-      output$apps_err <- renderText({"You need to include a reason if you 
-        are requesting Bentham access."})
+        output$apps_icon <- renderUI({icon("times")})
+        foundErrors <- 1
+      }
+      
+    } else {
+      output$apps_err <- renderText({""})
+      output$apps_icon <- renderUI({icon("check")})
     }
     
     #Check ID is 6 characters long
@@ -205,7 +209,7 @@ shinyServer(function(input, output, session) {
     # Check Bentham reason if Bentham ticked
     if(input$bentham == TRUE &&
        input$bentham_reason == "") {
-      output$bentham_reason_err <- renderText({"Please provide a reason why access to the Bentham app is required."})
+      output$bentham_reason_err <- renderText({"You must provide a reason why access to the Bentham app is required."})
       output$bentham_reason_icon <- renderUI({icon("times")})
       foundErrors <- 1
     } else {
