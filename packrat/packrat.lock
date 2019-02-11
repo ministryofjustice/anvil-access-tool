@@ -43,6 +43,12 @@ Source: CRAN
 Version: 1.0.0
 Hash: c7273c0f0bc9f5e41f4c52a8cf571f0f
 
+Package: askpass
+Source: CRAN
+Version: 1.1
+Hash: 6f6c430e3cd0dd7d48f447700f4d7e7f
+Requires: sys
+
 Package: assertthat
 Source: CRAN
 Version: 0.2.0
@@ -57,6 +63,11 @@ GithubRepo: aws.ec2metadata
 GithubUsername: cloudyr
 GithubRef: master
 GithubSha1: f6bc0bd67ed9b648ad05defe6ff1d7cc00596ecc
+RemoteHost: api.github.com
+RemoteRepo: aws.ec2metadata
+RemoteUsername: cloudyr
+RemoteRef: master
+RemoteSha: f6bc0bd67ed9b648ad05defe6ff1d7cc00596ecc
 
 Package: aws.s3
 Source: github
@@ -67,6 +78,11 @@ GithubRepo: aws.s3
 GithubUsername: cloudyr
 GithubRef: master
 GithubSha1: ff2966749a361ff143ef99053325163460dc15d0
+RemoteHost: api.github.com
+RemoteRepo: aws.s3
+RemoteUsername: cloudyr
+RemoteRef: master
+RemoteSha: ff2966749a361ff143ef99053325163460dc15d0
 
 Package: aws.signature
 Source: github
@@ -77,6 +93,11 @@ GithubRepo: aws.signature
 GithubUsername: cloudyr
 GithubRef: master
 GithubSha1: df1ddb4931d755bb83cd7f05937be0d7129f46fb
+RemoteHost: api.github.com
+RemoteRepo: aws.signature
+RemoteUsername: cloudyr
+RemoteRef: master
+RemoteSha: df1ddb4931d755bb83cd7f05937be0d7129f46fb
 
 Package: base64enc
 Source: CRAN
@@ -114,11 +135,6 @@ Package: data.table
 Source: CRAN
 Version: 1.12.0
 Hash: d382bb97e2d9dd05ad8070e41513dcb1
-
-Package: dichromat
-Source: CRAN
-Version: 2.0-0
-Hash: 08eed0c80510af29bb15f840ccfe37ce
 
 Package: digest
 Source: CRAN
@@ -227,8 +243,9 @@ Requires: lattice
 
 Package: openssl
 Source: CRAN
-Version: 1.1
-Hash: 82c893294829c4badc3d4133b66d1428
+Version: 1.2.1
+Hash: c3c2751a977ed402ec7a2a32698fb533
+Requires: askpass
 
 Package: packrat
 Source: github
@@ -275,14 +292,19 @@ Hash: 1176a91e0c23d4fc8f48bc5704a6f826
 
 Package: s3tools
 Source: github
-Version: 0.0.6
-Hash: 2c43cf285017a64d7d9cf0e219f45cf8
+Version: 0.0.9
+Hash: d60f4100735c4a16a3caf389303db417
 Requires: aws.ec2metadata, aws.s3, aws.signature, digest, httr,
     jsonlite
 GithubRepo: s3tools
 GithubUsername: moj-analytical-services
 GithubRef: master
-GithubSha1: 18c4f2a6a7381824b0b683e0ae70959abda97867
+GithubSha1: 934c9f9420acb168107979267660b2dbd31b6cd7
+RemoteHost: api.github.com
+RemoteRepo: s3tools
+RemoteUsername: moj-analytical-services
+RemoteRef: master
+RemoteSha: 934c9f9420acb168107979267660b2dbd31b6cd7
 
 Package: scales
 Source: CRAN
@@ -342,6 +364,11 @@ Source: CRAN
 Version: 1.3.1
 Hash: 9f417a1d899ed1f080942ab36998e8b5
 Requires: glue, magrittr, stringi
+
+Package: sys
+Source: CRAN
+Version: 2.1
+Hash: 5ce312d2f816b21f602cb81fe4659a0b
 
 Package: tibble
 Source: CRAN
