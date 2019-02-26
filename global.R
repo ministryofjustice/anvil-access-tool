@@ -11,6 +11,7 @@ library(shinyjs)        ##
 library(shinyalert)     ##
 
 ## Check if app is being opening in IE and warn if so
+##NOT CURRENTLY WORKING.........
 shinyjs::useShinyjs()
 tags$meta("http-equiv" = "X-UA-compatible", content = "IE = edge")
 includeScript("www/IE.js")
