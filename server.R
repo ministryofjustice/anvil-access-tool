@@ -1,4 +1,6 @@
 ## server.R
+tags$meta("http-equiv" = "X-UA-compatible", content = "IE = edge")  ##to warn off IE users
+includeScript("www/IE.js")                                          ##to warn off IE users
 
 ## Define server logic
 shinyServer(function(input, output, session) {
