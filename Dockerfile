@@ -31,4 +31,8 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/
 
 # Run shiny-server on port 80
 RUN sed -i 's/3838/80/g' /etc/shiny-server/shiny-server.conf
+
+# Disable websockets on the server (to help Quantum grey-out issues)
+RUN echo "disable_protocols websocket xdr-streaming xhr-streaming iframe-eventsource iframe-htmlfile xdr-polling xhr-polling iframe-xhr-polling;" >> /etc/shiny-server/shiny-server.conf
+
 EXPOSE 80
