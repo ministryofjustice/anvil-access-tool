@@ -21,7 +21,7 @@ shinyUI(
                   p("To gain access to the HMPPS Anvil apps,
                   please enter your details in the fields below and click submit."),
                   p("If you have any issues submitting this form,
-                    please contact anvil@noms.gsi.gov.uk"))
+                    please contact anvil@justice.gov.uk"))
             ),
   
             ## Section First Name
