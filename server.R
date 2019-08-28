@@ -4,18 +4,19 @@
 shinyServer(function(input, output, session) {
 
   form_data <- reactive({
-    data <- data.frame(
+    data <- data.table(
       first_name = input$first_name, 
       surname = input$surname, 
       prison = input$prison, 
       role = input$role, 
       quantum_id = input$quantum_id, 
       bentham = input$bentham, 
-      bentham_reason = input$bentham_reason, 
-      safety = input$safety, 
-      categorisation = NA, 
+      bentham_reason = ifelse(input$bentham == 1, input$bentham_reason, NA), 
       drugs_prison = input$drugs, 
-      drugs_prison_reason = input$drugs_reason, 
+      drugs_prison_reason = ifelse(input$drugs == 1, input$drugs_reason, NA),  
+      safety = NA, 
+      categorisation = NA, 
+      date_requested = as.Date(Sys.Date()), 
       email = input$email, 
       account = "Requested"
     )
@@ -23,10 +24,11 @@ shinyServer(function(input, output, session) {
   
   responses_subset <- reactive({
     responses <- loadData()
-    responses[responses$prison == input$prison,
-              c("first_name", "surname", "role", "quantum_id",
-                "bentham", "bentham_reason", "safety", "categorisation", 
-                "drugs_prison", "drugs_prison_reason", "account", "email")]
+    responses[responses$prison == input$prison & (responses$bentham == 1 | responses$drugs_prison == 1),
+              c("first_name", "surname", "role", "quantum_id", 
+                "bentham", "bentham_reason", "drugs_prison", "drugs_prison_reason",
+                "safety", "categorisation", "date_requested", 
+                "account", "email")]
   })
   
   
@@ -34,13 +36,12 @@ shinyServer(function(input, output, session) {
     req(nrow(responses_subset()) > 0)
     access_table <- responses_subset()
     access_table$bentham <- ifelse(access_table$bentham == 1, tick, cross)
-    access_table$safety <- ifelse(access_table$safety == 1, tick, cross)
     access_table$drugs_prison <- ifelse(access_table$drugs_prison == 1, tick, cross)
     
     ## Render table but remove columns so don't display email address
     ## or reasons as makes table too wide
 
-    datatable(access_table[, c(1:5, 7, 9, 11)], escape = FALSE,
+    datatable(access_table[, c(1:5, 7, 12)], escape = FALSE,
               options = list(paging = FALSE,
                              scrollCollapse = T,
                              dom = "ft", 
@@ -48,7 +49,7 @@ shinyServer(function(input, output, session) {
                              scrollY = "500px"),
               rownames = FALSE,
               colnames = c("First Name", "Surname", "Role", "Quantum ID",
-                           "Bentham", "Safety Tool", "Drugs in Prisons",
+                           "Bentham", "Drugs in Prisons",
                            "Account Status")
               )
   })
@@ -144,7 +145,6 @@ shinyServer(function(input, output, session) {
     }
 
     if(all(is.null(input$bentham),
-           is.null(input$safety),
            is.null(input$drugs))) {
       output$apps_err <- renderText({"Please select at least one app."})
       output$apps_icon <- renderUI({icon("times")})
@@ -160,8 +160,6 @@ shinyServer(function(input, output, session) {
       ## if any requests are made where access doesn't already exist
       if (any((all(unlist(responses_subset()[quantum_id == input$quantum_id, 5]) == 0) &
                input$bentham == T) |
-              (all(unlist(responses_subset()[quantum_id == input$quantum_id, 7]) == 0) &
-               input$safety == T) |
               (all(unlist(responses_subset()[quantum_id == input$quantum_id, 9]) == 0) &
                input$drugs == T))) {
         
