@@ -160,7 +160,7 @@ shinyServer(function(input, output, session) {
       ## if any requests are made where access doesn't already exist
       if (any((all(unlist(responses_subset()[quantum_id == input$quantum_id, 5]) == 0) &
                input$bentham == T) |
-              (all(unlist(responses_subset()[quantum_id == input$quantum_id, 9]) == 0) &
+              (all(unlist(responses_subset()[quantum_id == input$quantum_id, 7]) == 0) &
                input$drugs == T))) {
         
         output$apps_err <- renderText({""})
