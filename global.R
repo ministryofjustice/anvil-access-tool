@@ -37,7 +37,23 @@ cross <- "<i class=\"fa fa-times de-color\" aria-hidden=\"true\"></i>"
 saveData <- function (data) {
   ## Reload data from S3
   responses <- as.data.table(s3tools::s3_path_to_full_df(
-    "alpha-app-anvil-access-tool/anvil-app-responses_v4.csv", header = TRUE))
+    "alpha-app-anvil-access-tool/anvil-app-responses_v4.csv", header = TRUE, 
+    col_types = list(
+      col_character(), 
+      col_character(), 
+      col_character(), 
+      col_character(), 
+      col_character(), 
+      col_integer(), 
+      col_character(), 
+      col_integer(), 
+      col_character(), 
+      col_integer(), 
+      col_integer(), 
+      col_date(), 
+      col_character(), 
+      col_character()
+    )))
   names(responses) <- fields
   responses$date_requested <- as.Date(responses$date_requested, origin = "1970-01-01")
 
