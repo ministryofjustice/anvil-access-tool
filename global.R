@@ -39,6 +39,9 @@ saveData <- function (data) {
   responses <- as.data.table(s3tools::s3_path_to_full_df(
     "alpha-app-anvil-access-tool/anvil-app-responses_v4.csv", header = TRUE))
   names(responses) <- fields
+  responses[date_requested == "", date_requested := NA]
+  responses[drugs_prison == "", drugs_prison := 0]
+  responses[drugs_prison_reason == "", drugs_prison_reason := NA]
   responses$date_requested <- as.Date(responses$date_requested, origin = "1970-01-01")
 
   if (exists ("responses")) {
