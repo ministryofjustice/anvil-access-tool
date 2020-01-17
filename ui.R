@@ -156,6 +156,18 @@ shinyUI(
                   awesomeCheckbox(inputId = "drugs",
                                   label = "Drugs in Prisons",
                                   value = FALSE,
+                                  status = "danger"),
+                    awesomeCheckbox(inputId = "network",
+                                  label = "Network",
+                                  value = FALSE,
+                                  status = "danger"),
+                    awesomeCheckbox(inputId = "visitors",
+                                  label = "Visitors",
+                                  value = FALSE,
+                                  status = "danger"),
+                    awesomeCheckbox(inputId = "novel_drugs",
+                                  label = "Novel Drug Words",
+                                  value = FALSE,
                                   status = "danger")
                 )
               ),
@@ -183,8 +195,38 @@ shinyUI(
             uiOutput("drugs_check"),
             
             column(width = 1),
-            div(class = "class_bentham_reason_error",
+            div(class = "class_drugs_reason_error",
                 textOutput("drugs_reason_err"),
+                br()
+            ),
+              
+            # Section: Network reason
+            
+            uiOutput("network_check"),
+            
+            column(width = 1),
+            div(class = "class_network_reason_error",
+                textOutput("network_reason_err"),
+                br()
+            ),
+              
+              # Section: Visitors reason
+            
+            uiOutput("visitors_check"),
+            
+            column(width = 1),
+            div(class = "class_visitor_reason_error",
+                textOutput("visitor_reason_err"),
+                br()
+            ),
+              
+              # Section: Drugs reason
+            
+            uiOutput("novel_drugs_check"),
+            
+            column(width = 1),
+            div(class = "class_novel_drugs_reason_error",
+                textOutput("novel_drugs_reason_err"),
                 br()
             ),
             
