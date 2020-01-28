@@ -1,0 +1,171 @@
+prison,prison_code,soct_region
+Acklington,AK,NA
+Albany,AL,NA
+Aldington,AN,NA
+Altcourse,AC,North West & West Midlands
+Ashfield,AS,South West & Wales
+Ashwell,AW,NA
+Askham Grange,AG,North East & Yorkshire
+Aylesbury,AY,London & South East
+Bedford,BF,East & East Midlands
+Belmarsh,BA,Long Term High Security
+Berwyn,BW,South West & Wales
+Birmingham,BM,North West & West Midlands
+Blakenhurst,BT,NA
+Blantyre House,BH,NA
+Blundeston,BD,NA
+Brinsford,BS,North West & West Midlands
+Bristol,BL,South West & Wales
+Brixton,BX,London & South East
+Brockhill,BK,NA
+Bronzefield,BZ,London & South East
+Buckley Hall,BC,North West & West Midlands
+Bullingdon,BN,London & South East
+Bullwood Hall,BU,NA
+Bure,BR,East & East Midlands
+Camp Hill,CH,NA
+Campsfield House,CP,NA
+Canterbury,CY,NA
+Cardiff,CF,South West & Wales
+Castington,CS,NA
+Channings Wood,CW,South West & Wales
+Chelmsford,CD,East & East Midlands
+Cleland,CE,NA
+Colchester,CR,NA
+Coldingley,CL,London & South East
+Cookham Wood,CK,London & South East
+Dartmoor,DA,South West & Wales
+Deerbolt,DT,North East & Yorkshire
+Doncaster,DN,North East & Yorkshire
+Dorchester,DR,NA
+Dovegate,DG,North West & West Midlands
+Dover,DV,NA
+Downview,DW,London & South East
+Drake Hall,DH,North West & West Midlands
+Durham,DM,North East & Yorkshire
+East Sutton Park,ES,London & South East
+Eastwood Park,EW,South West & Wales
+Edmunds Hill,NE,NA
+Elmley,EY,London & South East
+Erlestoke,EE,South West & Wales
+Everthorpe,EV,NA
+Exeter,EX,South West & Wales
+Featherstone,FS,North West & West Midlands
+Feltham,FM,London & South East
+Finnamore,FI,NA
+Ford,FD,London & South East
+Foreign Prison,FO,NA
+Forest Bank,FB,North West & West Midlands
+Foston Hall,FH,East & East Midlands
+Frankland,FK,Long Term High Security
+Full Sutton,FN,Long Term High Security
+Garth,GH,North West & West Midlands
+Gartree,GT,Long Term High Security
+Ghost Holding Establishment,ZZ,NA
+Glen Parva,GP,NA
+Gloucester,GL,NA
+Grendon,GN,London & South East
+Guys Marsh,GM,South West & Wales
+Haslar,HR,NA
+Hatfield,HD,North East & Yorkshire
+Haverigg,HV,North West & West Midlands
+Hewell,HE,North West & West Midlands
+Hewell Grange,HG,NA
+High Down,HO,London & South East
+Highpoint,HP,East & East Midlands
+Hindley,HI,North West & West Midlands
+Hollesley Bay,HB,East & East Midlands
+Holloway,HY,NA
+Holme House,HH,North East & Yorkshire
+Hull,HL,North East & Yorkshire
+Humber,HM,North East & Yorkshire
+Huntercombe,HC,London & South East
+Isis,IS,London & South East
+Isle Of Wight,IW,Long Term High Security
+Kennet,KT,NA
+Kingston,PT,NA
+Kirkham,KM,North West & West Midlands
+Kirklevington Grange,KV,North East & Yorkshire
+Lancaster Castle,LA,NA
+Lancaster Farms,LF,North West & West Midlands
+Latchmere House,LM,NA
+Leeds,LE,North East & Yorkshire
+Leicester,LC,East & East Midlands
+Lewes,LW,London & South East
+Leyhill,LY,South West & Wales
+Lincoln,LI,East & East Midlands
+Lindholme,LH,North East & Yorkshire
+Littlehey,LT,East & East Midlands
+Liverpool,LP,North West & West Midlands
+Long Lartin,LL,Long Term High Security
+Low Newton,LN,North East & Yorkshire
+Lowdham Grange,LG,East & East Midlands
+Maidstone,MS,London & South East
+Manchester,MR,Long Term High Security
+Medway,MW,NA
+Moorland,MD,North East & Yorkshire
+Morton Hall,MH,East & East Midlands
+Mount,MT,East & East Midlands
+New Hall,NH,North East & Yorkshire
+North Sea Camp,NS,East & East Midlands
+Northallerton,NN,NA
+Northeye,NO,NA
+Northumberland,NL,North East & Yorkshire
+Norwich,NW,East & East Midlands
+Nottingham,NM,East & East Midlands
+Oakwood,OW,North West & West Midlands
+Onley,ON,East & East Midlands
+Outside,OU,NA
+Oxford,OX,NA
+Parc,PR,South West & Wales
+Parkhurst,PK,NA
+Pentonville,PV,London & South East
+Peterborough Female,PF,East & East Midlands
+Peterborough Male,PB,East & East Midlands
+Portland,PD,South West & Wales
+Prescoed,UP,South West & Wales
+Preston,PN,North West & West Midlands
+Pucklechurch,PC,NA
+Ranby,RN,East & East Midlands
+Reading,RD,NA
+Risley,RS,North West & West Midlands
+Rochester,RC,London & South East
+Rollestone,RL,NA
+Rudgate,RU,NA
+Rye Hill,RH,East & East Midlands
+Send,SD,London & South East
+Shepton Mallet,SM,NA
+Shrewsbury,SY,NA
+Spring Hill,SP,London & South East
+Stafford,SF,North West & West Midlands
+Standford Hill,EH,London & South East
+Stocken,SK,East & East Midlands
+Stoke Heath,SH,North West & West Midlands
+Styal,ST,North West & West Midlands
+Sudbury,SU,East & East Midlands
+Swaleside,SL,Long Term High Security
+Swansea,SW,South West & Wales
+Swinfen Hall,SN,North West & West Midlands
+Thameside,TS,London & South East
+The Weare,WA,NA
+Thorn Cross,TC,North West & West Midlands
+Thorp Arch,TA,NA
+Transfer,TR,NA
+Unknown Location,UN,NA
+Usk,UK,South West & Wales
+Verne,VE,South West & Wales
+Wakefield,WD,Long Term High Security
+Wandsworth,WW,London & South East
+Warren Hill,WI,East & East Midlands
+Wayland,WL,East & East Midlands
+Wealstun,WE,North East & Yorkshire
+Wellingborough,WB,NA
+Werrington,WN,North West & West Midlands
+Wetherby,WY,North East & Yorkshire
+Whatton,WT,East & East Midlands
+Whitemoor,WR,Long Term High Security
+Winchester,WC,London & South East
+Wolds,WO,NA
+Woodhill,WH,Long Term High Security
+Wormwood Scrubs,WS,London & South East
+Wymott,WM,North West & West Midlands
