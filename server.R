@@ -71,7 +71,7 @@ shinyServer(function(input, output, session) {
                              scrollY = "500px"),
               rownames = FALSE,
               colnames = c("First Name", "Surname", "Role", "Quantum ID",
-                           "Bentham", "Drugs in Prisons", "Network",
+                           "Seized Media", "Drug Conveyancing", "Network",
                            "Visitors", "Novel Drugs",
                            "Account Status")
     )
@@ -88,7 +88,7 @@ shinyServer(function(input, output, session) {
       fluidRow(column(width = 10,
                       div(class = "class_bentham_reason",
                           textAreaInput("bentham_reason",
-                                        label = h5("If you are requesting access to the Bentham app,
+                                        label = h5("If you are requesting access to the Seized Media Database,
                                               you must outline why access is required:"),
                                         width = "100%",
                                         rows = 6)
@@ -101,7 +101,7 @@ shinyServer(function(input, output, session) {
       fluidRow(column(width = 10,
                       div(class = "class_bentham_reason",
                           textAreaInput("drugs_reason",
-                                        label = h5("If you are requesting access to the Drugs in Prisons app,
+                                        label = h5("If you are requesting access to the Drugs Conveyancing app,
                                               you must outline why access is required:"),
                                         width = "100%",
                                         rows = 6)
@@ -311,7 +311,7 @@ shinyServer(function(input, output, session) {
     # Check Bentham reason if Bentham ticked
     if(input$bentham == TRUE &&
        input$bentham_reason == "") {
-      output$bentham_reason_err <- renderText({"You must provide a reason why access to the Bentham app is required."})
+      output$bentham_reason_err <- renderText({"You must provide a reason why access to the Seized Media Database is required."})
       output$apps_icon <- renderUI({icon("times")})
       foundErrors <- 1
     } else {
@@ -322,7 +322,7 @@ shinyServer(function(input, output, session) {
     # Check Drugs reason if Drugs ticked
     if(input$drugs == TRUE &&
        input$drugs_reason == "") {
-      output$drugs_reason_err <- renderText({"You must provide a reason why access to the Drugs in Prisons app is required."})
+      output$drugs_reason_err <- renderText({"You must provide a reason why access to the Drug Conveyancing App is required."})
       output$apps_icon <- renderUI({icon("times")})
       foundErrors <- 1
     } else {
@@ -332,7 +332,7 @@ shinyServer(function(input, output, session) {
     # Check Network reason if network ticked
     if(input$network == TRUE &&
        input$network_reason == "") {
-      output$network_reason_err <- renderText({"You must provide a reason why access to the Prison Network app is required."})
+      output$network_reason_err <- renderText({"You must provide a reason why access to the Prison Network App is required."})
       output$apps_icon <- renderUI({icon("times")})
       foundErrors <- 1
     } else {
@@ -342,7 +342,7 @@ shinyServer(function(input, output, session) {
     # Check Visitors reason if Visitors ticked
     if(input$visitors == TRUE &&
        input$visitors_reason == "") {
-      output$visitors_reason_err <- renderText({"You must provide a reason why access to the Visitors app is required."})
+      output$visitors_reason_err <- renderText({"You must provide a reason why access to the Prison Visitors App is required."})
       output$apps_icon <- renderUI({icon("times")})
       foundErrors <- 1
     } else {
@@ -352,7 +352,7 @@ shinyServer(function(input, output, session) {
     # Check Novel Drugs reason if Novel Drugs ticked
     if(input$novel_drugs == TRUE &&
        input$novel_drugs_reason == "") {
-      output$novel_drugs_reason_err <- renderText({"You must provide a reason why access to the Novel Drug Words app is required."})
+      output$novel_drugs_reason_err <- renderText({"You must provide a reason why access to the Novel Drug Words App is required."})
       output$apps_icon <- renderUI({icon("times")})
       foundErrors <- 1
     } else {
