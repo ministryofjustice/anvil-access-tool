@@ -44,15 +44,11 @@ shinyServer(function(input, output, session) {
                              "network", "network_reason", "visitors", "visitors_reason",
                              "novel_drugs", "novel_drugs_reason",
                              "date_requested", "account", "email", "area")]
-    print("in all")
-    print(head(responses, 1))
     return(responses)
   })
     
   responses_subset <- reactive({
     responses <- responses_all()[area == input$area & (bentham == 1 | drugs_prison == 1 | network == 1 | visitors == 1 | novel_drugs == 1)]
-    print("in subset")
-    print(head(responses, 1))
     return(responses)
   })
   

@@ -13,15 +13,15 @@ shinyUI(
           column(width = 4, #class = "class_selections",
                  id = "form",
                  fluidRow(#class = "class_top_banner",
-                   div(class = "class_mainTitle", "Anvil access request form")
+                   div(class = "class_mainTitle", "MoJ Prison Intelligence tools access request form")
                  ),
                  div(class = "class_selections",
                      fluidRow(
                        div(class = "class_intro",
-                           p("To gain access to the HMPPS Anvil apps,
-                              please enter your details in the fields below and click submit."),
-                           p("If you have any issues submitting this form,
-                              please contact anvil@justice.gov.uk"))
+                           HTML("<p><div style='color:red'>To gain access to the MoJ prison intelligence tools,
+                              please enter your details in the fields below and click submit.</div></p>
+                                <p>If you have any issues submitting this form,
+                              please contact intel_app_support@digital.justice.gov.uk</p>"))
                      ),
                      
                      ## Section First Name
