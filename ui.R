@@ -198,8 +198,7 @@ shinyUI(
                      
                      column(width = 1),
                      div(class = "class_bentham_reason_error",
-                         textOutput("bentham_reason_err"),
-                         br()
+                         textOutput("bentham_reason_err")
                      ),
                      
                      # Section: Drugs reason
@@ -208,8 +207,7 @@ shinyUI(
                      
                      column(width = 1),
                      div(class = "class_bentham_reason_error",
-                         textOutput("drugs_reason_err"),
-                         br()
+                         textOutput("drugs_reason_err")
                      ),
                      
                      # Section: Network reason
@@ -218,8 +216,7 @@ shinyUI(
                      
                      column(width = 1),
                      div(class = "class_bentham_reason_error",
-                         textOutput("network_reason_err"),
-                         br()
+                         textOutput("network_reason_err")
                      ),
                      
                      # Section: Visitors reason
@@ -228,8 +225,7 @@ shinyUI(
                      
                      column(width = 1),
                      div(class = "class_bentham_reason_error",
-                         textOutput("visitors_reason_err"),
-                         br()
+                         textOutput("visitors_reason_err")
                      ),
                      
                      # Section: Drugs reason
@@ -238,8 +234,7 @@ shinyUI(
                      
                      column(width = 1),
                      div(class = "class_bentham_reason_error",
-                         textOutput("novel_drugs_reason_err"),
-                         br()
+                         textOutput("novel_drugs_reason_err")
                      ),
                      
                      div(class = "class_submitButton",
@@ -250,9 +245,14 @@ shinyUI(
           
           column(width = 8,
                  div(class = "class_access_msg",
-                      "The following users at your establishment have already requested 
-                      access to the ticked apps. The final column states whether their account
-                      has been created."),
+                      HTML("The following users at your establishment have already requested 
+                      access to apps. Status is indicated by:<br>
+                      <br>Tick - account has been created
+                      <br>Cross - account has been denied
+                      <br>Clock - account requested but pending creation
+                      <br>'Approved' - account approved but not created (please contact us)
+                      <br>'Deleted' - account deleted (please contact us if not expected)
+                      <br>'N/A' - no account application received for")),
                  
                  div(class = "class_prison_null",
                      textOutput("prison_access_null")
