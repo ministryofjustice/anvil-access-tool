@@ -67,7 +67,7 @@ loadData <- function() {
   responses[visitors == "", visitors := 0]
   responses[novel_drugs == "", novel_drugs := 0]
   responses[reason == "" | is.null(reason) | reason == "NULL", reason := NA]
-  # responses[, date_requested := format(as.Date(date_requested, format = "%d/%m/%Y"), "%Y-%m-%d")]
+  responses[, date_requested := format(as.Date(date_requested, format = "%d/%m/%Y"), "%Y-%m-%d")]
   
   return(responses)
 }
@@ -90,7 +90,7 @@ saveData <- function (data) {
   
   ##IF REQUIRED
   ##change date format back to "Excel standard" format i.e. %d/%m/%Y
-  # responses[, date_requested := format(as.Date(date_requested, format = "%Y-%m-%d"), "%d/%m/%Y")]
+  responses[, date_requested := format(as.Date(date_requested, format = "%Y-%m-%d"), "%d/%m/%Y")]
   
   s3tools::write_df_to_csv_in_s3 (responses,
                                   "alpha-app-anvil-access-tool/anvil_app_responses_v6.csv",
