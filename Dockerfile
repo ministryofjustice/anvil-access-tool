@@ -1,38 +1,41 @@
-FROM rocker/shiny@sha256:a8296007af76d81df316e22d0f80fb065f2cf24e6fd76342e9f9f39bdd73acc6
+FROM quay.io/mojanalytics/rshiny:3.5.1
+
+ENV AWS_DEFAULT_REGION eu-west-1
+ENV PATH="/opt/shiny-server/bin:/opt/shiny-server/ext/node/bin:${PATH}"
+ENV SHINY_APP=/srv/shiny-server
+ENV NODE_ENV=production
+ENV ALLOWED_PROTOCOLS="jsonp-polling"
 
 WORKDIR /srv/shiny-server
 
-# Cleanup shiny-server dir
-RUN rm -rf ./*
+# ENV SHINY_GAID <your google analytics token here>
 
-# Make sure the directory for individual app logs exists
-RUN mkdir -p /var/log/shiny-server
-
-# Install dependency on xml2
-RUN apt-get update
-RUN apt-get install libxml2-dev --yes
-RUN apt-get install libssl-dev --yes
-
-# Add Packrat files individually so that next install command
+# Add environment file individually so that next install command
 # can be cached as an image layer separate from application code
-ADD packrat packrat
+ADD environment.yml environment.yml
 
-# Install packrat itself then packages from packrat.lock
-RUN R -e "install.packages('packrat'); packrat::restore()"
+# Conda packages install
+RUN conda env update --file environment.yml -n base
+RUN npm i -g ministryofjustice/analytics-platform-shiny-server#v0.0.3
+
+## -----------------------------------------------------
+## Uncomment if still using packrat alongside conda
+## Install packrat itself then packages from packrat.lock
+##ADD packrat packrat
+##RUN R -e "install.packages('packrat', repos = 'https://cloud.r-project.org'); packrat::restore()"
+## ------------------------------------------------------
 
 # Add shiny app code
 ADD . .
 
-# Shiny runs as 'shiny' user, adjust app directory permissions
-RUN chown -R shiny:shiny .
-
-# APT Cleanup
-RUN apt-get clean && rm -rf /var/lib/apt/lists/
-
-# Run shiny-server on port 80
-RUN sed -i 's/3838/80/g' /etc/shiny-server/shiny-server.conf
-
 # Disable websockets on the server (to help Quantum grey-out issues)
 RUN echo "disable_protocols websocket xdr-streaming xhr-streaming iframe-eventsource iframe-htmlfile xdr-polling xhr-polling iframe-xhr-polling;" >> /etc/shiny-server/shiny-server.conf
 
-EXPOSE 80
+# Increase http timeout
+RUN echo "http_keepalive_timeout 1800;" >> /etc/shiny-server/shiny-server.conf
+RUN echo "app_idle_timeout 1800;" >> /etc/shiny-server/shiny-server.conf
+
+
+USER shiny
+CMD analytics-platform-shiny-server
+EXPOSE 9999
