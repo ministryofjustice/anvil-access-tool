@@ -225,7 +225,7 @@ shinyServer(function(input, output, session) {
     }
     
     if(input$area == "--Please Select Area--" | 
-       (input$prison == PRISON_SELECT_TEXT & input$area != "HQ")) {
+       (input$prison == PRISON_SELECT_TEXT)) {
       output$prison_err <- renderText({"Please select an area and a prison - NOTE: Whole region can be selected as the prison."})
       output$prison_icon <- renderUI({icon("times")})
       foundErrors <- 1
