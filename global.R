@@ -52,7 +52,7 @@ status_lookup <- data.table(status=c("requested","approved","denied","created","
                                           tick,
                                           "Deleted",
                                           "N/A"))
-PRISON_SELECT_TEXT <- "--Please Select Prison/Team--"
+PRISON_SELECT_TEXT <- "--Please Select Prison or Team--"
 WHOLE_REGION_TEXT <- "Whole region"
 
 loadData <- function() {

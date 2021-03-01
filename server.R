@@ -48,7 +48,7 @@ shinyServer(function(input, output, session) {
       first_name = input$first_name,
       surname = input$surname,
       area = input$area,
-      prison = input$prison ,
+      prison = input$prison,
       role = input$role,
       id = tolower(input$quantum_id),
       email = tolower(input$email),
