@@ -21,8 +21,11 @@ includeScript("www/IE.js")
 ## Load prison dropdown from s3
 # dt.prisons <- data.table::as.data.table(s3tools::s3_path_to_full_df(
 #   "alpha-app-anvil-access-tool/prisons_and_offices_v2.csv", header = FALSE))
+
+##updated prison lookup - updated on feb 2021
 dt.prisons <- data.table::as.data.table(s3tools::s3_path_to_full_df(
   "alpha-app-anvil-access-tool/prison_area_lookup_aat.csv", header = FALSE))
+
 
 fields <- c("first_name", "surname", "area", "prison", "role",
             "id", "email", "date_requested", 
@@ -49,7 +52,7 @@ status_lookup <- data.table(status=c("requested","approved","denied","created","
                                           tick,
                                           "Deleted",
                                           "N/A"))
-PRISON_SELECT_TEXT <- "--Please Select Prison (if relevant)--"
+PRISON_SELECT_TEXT <- "--Please Select Prison or Team--"
 WHOLE_REGION_TEXT <- "Whole region"
 
 loadData <- function() {

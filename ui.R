@@ -109,7 +109,7 @@ shinyUI(
                      fluidRow(
                        column(width = 10,
                               conditionalPanel(
-                                condition = "condition=input.area!='--Please Select Area--'&&input.area!='HQ'",
+                                condition = "condition=input.area!='--Please Select Area--'",
                                 
                                 div("Prison (if relevant):", class = "class_prison",
                                     uiOutput("prison_picker")
