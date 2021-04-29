@@ -285,7 +285,7 @@ shinyServer(function(input, output, session) {
     }
 
     #Check that the format of the quantum id is correct
-    if(!grepl("^[a-z]{2,3}[0-9]{2,6}([a-z]?)$",tolower(input$quantum_id))){
+    if(!grepl("^[a-z]{1}q[a-z]{1}[0-9]{2}[a-z]{1}$|^[a-z]{2}[0-9]{6}$",tolower(input$quantum_id))){
       foundErrors <- 1
       quantumErr <- 1
     }
