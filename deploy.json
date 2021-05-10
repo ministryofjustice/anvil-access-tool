@@ -3,6 +3,6 @@
   "disable_authentication": true,
   "port": "9999",
   "allowed_ip_ranges": [
-    "DOM1", "QUANTUM", "102PF Wifi"
+    "DOM1", "QUANTUM", "102PF Wifi", "MoJo"
   ]
 }
