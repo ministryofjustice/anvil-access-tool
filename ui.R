@@ -144,7 +144,7 @@ shinyUI(
                        column(width = 10,
                               div(class = "class_quantum_id",
                                   textInput("quantum_id",
-                                            label = h3("Quantum ID:"),
+                                            label = h3("Quantum/NOMIS ID:"),
                                             width = "100%")
                               )
                        ),

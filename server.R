@@ -285,7 +285,7 @@ shinyServer(function(input, output, session) {
     }
 
     #Check that the format of the quantum id is correct
-    if(!grepl("^[a-z]{1}q[a-z]{1}[0-9]{2}[a-z]{1}$",tolower(input$quantum_id))){
+    if(!grepl("^[a-z]{1}q[a-z]{1}[0-9]{2}[a-z]{1}$|^[a-z]{2}[0-9]{6}$",tolower(input$quantum_id))){
       foundErrors <- 1
       quantumErr <- 1
     }
@@ -293,7 +293,7 @@ shinyServer(function(input, output, session) {
     #Print Quantum ID validation messages
     if(quantumErr == 1){
       output$quantum_error <- renderText({"Quantum ID must be of the format:
-        AAA99A with a Q as the second character."})
+        AAA99A with a Q as the second character. NOMIS ID must be of the format: AA123456"})
       output$quantum_icon <- renderUI({icon("times")})
     } else {
       output$quantum_error <- renderText({""})
