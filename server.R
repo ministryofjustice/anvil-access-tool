@@ -248,11 +248,11 @@ shinyServer(function(input, output, session) {
     } else if (tolower(input$quantum_id) %in% unlist(responses_all()[, id])) {
       
       ##only allow requests made for new apps i.e. where access doesn't already exists
-      bentham_already <- any(unlist(responses_all()[id == tolower(input$quantum_id), bentham]) == 1) & input$bentham == T
-      drugs_already <- any(unlist(responses_all()[id == tolower(input$quantum_id), drug_convey]) == 1) & input$drugs == T
-      network_already <- any(unlist(responses_all()[id == tolower(input$quantum_id), network]) == 1) & input$network == T
-      visitors_already <- any(unlist(responses_all()[id == tolower(input$quantum_id), visitors]) == 1) & input$visitors == T
-      novel_drugs_already <- any(unlist(responses_all()[id == tolower(input$quantum_id), novel_drugs]) == 1) & input$novel_drugs == T
+      bentham_already <- any(unlist(responses_all()[id == tolower(input$quantum_id), bentham_status]) == "created") & input$bentham == T
+      drugs_already <- any(unlist(responses_all()[id == tolower(input$quantum_id), drug_convey_status]) == "created") & input$drugs == T
+      network_already <- any(unlist(responses_all()[id == tolower(input$quantum_id), network_status]) == "created") & input$network == T
+      visitors_already <- any(unlist(responses_all()[id == tolower(input$quantum_id), visitors_status]) == "created") & input$visitors == T
+      novel_drugs_already <- any(unlist(responses_all()[id == tolower(input$quantum_id), novel_drugs_status]) == "created") & input$novel_drugs == T
       
       if (any(bentham_already, drugs_already, network_already, visitors_already, novel_drugs_already)) {
         
