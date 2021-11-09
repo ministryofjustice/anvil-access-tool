@@ -300,6 +300,22 @@ shinyServer(function(input, output, session) {
       output$quantum_icon <- renderUI({icon("check")})
     }
     
+    ##check if user is already on the anvil access spreadsheet
+    if(!(tolower(input$quantum_id) %in% dt.users[, id])){
+      foundErrors <- 1
+      newuserErr <- 1
+    }
+    
+    ##Print new user error
+    if(newuserErr == 1){
+      output$quantum_error <- renderText({"Quantum ID has been identified as a new user, 
+      to request access to the applications please contact MISST@justice.gov.uk"})
+      output$quantum_icon <- renderUI({icon("times")})
+    } else {
+      output$quantum_error <- renderText({""})
+      output$quantum_icon <- renderUI({icon("check")})
+    }
+    
     # Check Bentham reason if Bentham ticked
     if ((input$bentham == TRUE | input$drugs == TRUE | 
        input$network == TRUE | input$visitors == TRUE |

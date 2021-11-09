@@ -26,6 +26,9 @@ includeScript("www/IE.js")
 dt.prisons <- data.table::as.data.table(s3tools::s3_path_to_full_df(
   "alpha-app-anvil-access-tool/prison_area_lookup_aat.csv", header = FALSE))
 
+dt.users <- data.table::as.data.table(s3tools::s3_path_to_full_df(
+  "alpha-app-anvil-access-tool/anvil_app_responses_v6.csv", header = TRUE))
+
 
 fields <- c("first_name", "surname", "area", "prison", "role",
             "id", "email", "date_requested", 
@@ -40,6 +43,7 @@ email_choice <- c("@noms.gsi.gov.uk", "@justice.gov.uk", "@hmps.gov.uk", "@hmcts
                   "@probation.gov.uk", "@justice.gsi.gov.uk", "@digital.justice.gov.uk")
 foundErrors <- 0
 quantumErr <- 0
+newuserErr <- 0
 
 # tick <- "<i class=\"fa fa-check\" style=\"color:#34eb4c;\"\" aria-hidden=\"true\"></i>"
 tick <- "<i class=\"fa fa-check\" style=\"color:#34eb4c;\"><!-- icon --></i>"
