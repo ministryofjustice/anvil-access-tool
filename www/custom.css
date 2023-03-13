@@ -1,0 +1,184 @@
+.control-label{
+  font-size:20px;
+}
+
+.class_mainTitle{
+  margin-top:40px;
+  margin-left:15px;
+  margin-right:15px;
+  border-width:2px;
+  border-style:solid;
+  border-color:SteelBlue;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+  font-size:30px;
+  font-weight:bold;
+  font:arial;
+  background-color:SteelBlue;
+  color:white;
+  text-align:center;
+  padding:15px;
+}
+
+.class_intro{
+  font-size:15px;
+  font-weight: normal;
+  font:arial;
+  text-align:center;
+  padding:30px;
+}
+
+.class_selections{
+  background-color:LightSteelBlue;
+  border-width:2px;
+  border-style:solid;
+  border-color:LightSteelBlue;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px;
+  padding-bottom:60px;
+}
+
+
+.class_first_name{
+  padding-left:40px;
+  font-weight: normal;
+}
+
+
+.class_surname{
+  padding-left:40px;
+  font-weight: normal;
+}
+
+.class_email{
+  padding-left:40px;
+  font-weight: normal;
+}
+
+.class_email_confirmation{
+  padding-left:40px;
+  font-weight: normal;
+}
+
+.class_prison{
+  padding-left:40px;
+  font-weight: normal;
+  font:arial;
+  font-size:24px;
+}
+
+.prison{
+  padding-left:40px;
+  font-weight: normal;
+  font:arial;
+  font-size:24px;
+}
+
+.class_role{
+  padding-left:40px;
+  font-weight: normal;
+}
+
+.class_quantum_id{
+  padding-left:40px;
+  font-weight: normal;
+}
+
+.class_app_checkbox{
+  padding-left:40px;
+}
+
+.class_bentham_reason{
+  padding-left:40px;
+  font-weight: normal;
+}
+
+
+.class_submitButton{
+  padding-left:40px;
+}
+
+.class_first_name_err{
+  padding-left:40px;
+  color:red;
+}
+
+.class_surname_err{
+  padding-left:40px;
+  color:red;
+}
+
+.class_email_err{
+  padding-left:40px;
+  color:red;
+}
+
+.class_email_confirmation_err{
+  padding-left:40px;
+  color:red;
+}
+
+.class_role_err{
+  padding-left:40px;
+  color:red;
+}
+
+.class_prison_err{
+  padding-left:40px;
+  color:red;
+}
+
+.class_quantum_error{
+  padding-left:40px;
+  color:red;
+}
+
+.class_apps_error{
+  padding-left:40px;
+  color:red;
+}
+
+.class_bentham_reason_error{
+  padding-left:40px;
+  color:red;
+}
+
+.fa-check{
+  padding-top:0;
+  padding-left:0;
+  font-size:20px;
+}
+
+.fa-times{
+  padding-top:0;
+  padding-left:0;
+  margin-left:0;
+  font-size:20px;
+}
+
+.fa-clock{
+  padding-top:0;
+  padding-left:0;
+  margin-left:0;
+  font-size:20px;
+}
+
+.class_access_msg{
+  padding-top:70px;
+  margin-left:0;
+}
+
+.class_prison_access{
+  padding-top:10px;
+  padding-right:60px;
+}
+
+.class_prison_null{
+  padding-top:50px;
+}
+
+.de-color{
+  color:black;
+  padding-top:0;
+  padding-left:20px;
+} 
